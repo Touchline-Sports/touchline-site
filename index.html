@@ -214,6 +214,12 @@ main > section.feature:nth-child(even of .feature) .split .fig { order: -1; }
 .p-title { font-size: .95rem; font-weight: 700; letter-spacing: -.015em; }
 .p-note { font-size: .74rem; color: var(--muted); }
 .fig-note { font-size: .78rem; color: var(--muted); margin-top: 12px; }
+.fig.compact { width: 100%; max-width: 380px; justify-self: center; }
+.fig.compact .card { padding: 18px; }
+.fig.compact .p-head { margin-bottom: 12px; }
+.fig.compact .rows { gap: 11px; }
+.fig.compact .row .val { font-size: 1rem; }
+.fig.compact .chip { padding: 5px 11px; }
 
 .rows { display: flex; flex-direction: column; gap: 14px; }
 .row { display: grid; grid-template-columns: 1fr auto auto; gap: 6px 14px; align-items: center; }
@@ -418,7 +424,7 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
       <div class="fig">
         <div class="phone">
           <div class="screen">
-            <div class="ph-hi">Morning, Alex<small>Seniors &middot; Mon 21/09/2026</small></div>
+            <div class="ph-hi">Good morning<small>Seniors &middot; Mon 21/09/2026</small></div>
             <div class="ph-card ink">
               <div class="k">Next fixture &middot; #10</div>
               <div class="v">MD-4, Round 15</div>
@@ -453,7 +459,7 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
         <p class="lede">Import the GPS export your club already produces. Touchline works out each player's acute:chronic workload ratio, tracks it against their own four-week baseline, and alerts you to anyone drifting out of range before it becomes an injury.</p>
         <p class="lede">Catapult, STATSports or a CSV you built yourself. You map the columns once and they stay mapped.</p>
       </div>
-      <div class="fig">
+      <div class="fig compact">
         <div class="card">
           <div class="p-head">
             <span class="p-title">Squad load, MD-1</span>
@@ -461,19 +467,19 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
           </div>
           <div class="rows">
             <div class="row">
-              <span class="who">M. Oliveira</span><span class="status risk">High risk</span><span class="val">1.62</span>
+              <span class="who">#9 &middot; ST</span><span class="status risk">High risk</span><span class="val">1.62</span>
               <span class="track"><span class="zone" style="left:40%;width:25%"></span><i style="width:81%;background:var(--st-risk)"></i></span>
             </div>
             <div class="row">
-              <span class="who">K. Nguyen</span><span class="status caution">Caution</span><span class="val">1.38</span>
+              <span class="who">#7 &middot; RW</span><span class="status caution">Caution</span><span class="val">1.38</span>
               <span class="track"><span class="zone" style="left:40%;width:25%"></span><i style="width:69%;background:var(--st-caution)"></i></span>
             </div>
             <div class="row">
-              <span class="who">J. Castellan</span><span class="status ok">Available</span><span class="val">1.04</span>
+              <span class="who">#4 &middot; CB</span><span class="status ok">Available</span><span class="val">1.04</span>
               <span class="track"><span class="zone" style="left:40%;width:25%"></span><i style="width:52%;background:var(--st-ok)"></i></span>
             </div>
             <div class="row">
-              <span class="who">T. Abrahams</span><span class="status none">No alerts</span><span class="val">0.91</span>
+              <span class="who">#8 &middot; CM</span><span class="status none">No alerts</span><span class="val">0.91</span>
               <span class="track"><span class="zone" style="left:40%;width:25%"></span><i style="width:46%;background:var(--st-none)"></i></span>
             </div>
           </div>
