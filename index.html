@@ -163,6 +163,9 @@ section { padding-block: clamp(64px, 9vw, 116px); }
 .cover { background: var(--cover); color: var(--on-cover); }
 .cover .eyebrow { color: rgba(255, 255, 255, .62); }
 .cover .lede { color: rgba(255, 255, 255, .78); }
+.cover .tile { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .16); }
+.cover .aud-grid p { color: rgba(255, 255, 255, .72); }
+.cover.band { padding-block: clamp(48px, 7vw, 80px); }
 
 .hero { padding-block: clamp(56px, 8vw, 96px) clamp(48px, 7vw, 84px); }
 .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
@@ -171,7 +174,7 @@ section { padding-block: clamp(64px, 9vw, 116px); }
 .pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
 .pills li { font-size: .85rem; color: var(--text-2); padding: 6px 14px; border-radius: 999px; border: 1px solid var(--hair); }
 
-.audience { margin-top: clamp(48px, 7vw, 80px); display: flex; flex-direction: column; gap: 18px; }
+.audience { display: flex; flex-direction: column; gap: 18px; }
 .aud-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .aud-grid .tile { display: flex; flex-direction: column; gap: 6px; }
 .aud-grid p { font-size: .92rem; color: var(--text-2); }
@@ -372,19 +375,23 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="audience">
-      <h2 style="font-size:clamp(1.3rem,2.4vw,1.6rem)">Built for everyone on the touchline</h2>
-      <div class="aud-grid">
-        <div class="tile"><h3>Coaches</h3><p>See load and readiness before you pick the side.</p></div>
-        <div class="tile"><h3>Physios</h3><p>Spot risk early and track every return to play.</p></div>
-        <div class="tile"><h3>Club admins</h3><p>Fixtures, squads and staff kept in one place.</p></div>
-        <div class="tile"><h3>Players</h3><p>Check in, see your numbers, know the plan.</p></div>
+  <section class="cover band">
+    <div class="wrap">
+      <div class="audience">
+        <h2 style="font-size:clamp(1.3rem,2.4vw,1.6rem)">Built for everyone on the touchline</h2>
+        <div class="aud-grid">
+          <div class="tile"><h3>Coaches</h3><p>See load and readiness before you pick the side.</p></div>
+          <div class="tile"><h3>Physios</h3><p>Spot risk early and track every return to play.</p></div>
+          <div class="tile"><h3>Club admins</h3><p>Fixtures, squads and staff kept in one place.</p></div>
+          <div class="tile"><h3>Players</h3><p>Check in, see your numbers, know the plan.</p></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="wrap rule">
+  <section class="wrap">
     <div class="split">
       <div class="copy">
         <span class="eyebrow">The player app</span>
@@ -422,17 +429,7 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     </div>
   </section>
 
-  <section class="cover">
-    <div class="wrap">
-      <div class="copy" style="max-width:62ch">
-        <span class="eyebrow">The gap</span>
-        <h2>The data arrives on Tuesday. You needed the decision on Monday.</h2>
-        <p class="lede">Your club owns the same GPS units the professionals do. What you don't have is the sports scientist who turns the export into a decision, so the team sheet gets picked on how players look in the warm-up.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap" id="what">
+  <section class="wrap rule" id="what">
     <div class="split">
       <div class="copy">
         <span class="eyebrow">GPS load and injury-risk alerts</span>
