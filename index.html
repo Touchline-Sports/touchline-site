@@ -32,6 +32,8 @@
   --hair-soft: rgba(21, 23, 26, .08);
   --own: var(--red);
   --cover: var(--graphite);
+  --dark-ground: var(--graphite);
+  --dark-surface: #35393f;
   --on-cover: #ffffff;
   --inverse: var(--ink);
   --on-inverse: var(--card);
@@ -58,6 +60,10 @@
     --st-risk: #e66a5e;
     --st-none: #9aa0a7;
     --cover: #24272b;
+  --dark-ground: #222529;
+  --dark-surface: #2f3238;
+    --dark-ground: #222529;
+    --dark-surface: #2f3238;
     --inverse: #f3f3f1;
     --on-inverse: var(--ink);
     color-scheme: dark;
@@ -157,7 +163,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 /* ---------- sections ---------- */
 section { padding-block: clamp(64px, 9vw, 116px); }
-.rule { border-top: 1px solid var(--hair-soft); }
 .lede { font-size: clamp(1.05rem, 1.7vw, 1.2rem); color: var(--text-2); max-width: 52ch; }
 
 .cover { background: var(--cover); color: var(--on-cover); }
@@ -169,6 +174,26 @@ section { padding-block: clamp(64px, 9vw, 116px); }
 .band.light { background: var(--surface); }
 .band.light .tile { background: var(--bg); }
 
+/* Section grounds alternate dark and light down the page automatically: every odd section after the hero is dark.
+   Dark sections re-point the theme tokens, so cards, text and status colours follow. */
+main > section:nth-of-type(odd):not(.hero) {
+  background: var(--dark-ground);
+  color: var(--text);
+  --bg: var(--dark-ground);
+  --surface: var(--dark-surface);
+  --text: #f3f3f1;
+  --text-2: #b8bcc2;
+  --muted: #8e939a;
+  --hair: rgba(243, 243, 241, .16);
+  --hair-soft: rgba(243, 243, 241, .08);
+  --own: #dc4a50;
+  --st-ok: #4cbf6e;
+  --st-caution: #e6ae3c;
+  --st-risk: #e66a5e;
+  --st-none: #9aa0a7;
+  --inverse: #f3f3f1;
+  --on-inverse: var(--ink);
+}
 .hero { position: relative; overflow: hidden; isolation: isolate; padding-block: clamp(56px, 8vw, 96px) clamp(48px, 7vw, 84px); }
 .hero > .wrap { position: relative; }
 
@@ -435,37 +460,39 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     </div>
   </section>
 
-  <section class="wrap feature">
-    <div class="split">
-      <div class="copy">
-        <span class="eyebrow">The player app</span>
-        <h2>Every player sees their own numbers.</h2>
-        <p class="lede">Their next fixture, their training week, and how their last session compared with their own average. Personal bests, plain-English explanations and their position rank. Never another player's numbers.</p>
-        <p class="lede">It isn't a feature. It's why they keep filling in the check-in.</p>
-      </div>
-      <div class="fig">
-        <div class="phone">
-          <div class="screen">
-            <div class="ph-hi">Good morning<small>Seniors &middot; Mon 21/09/2026</small></div>
-            <div class="ph-card ink">
-              <div class="k">Next fixture &middot; #10</div>
-              <div class="v">MD-4, Round 15</div>
-            </div>
-            <div class="ph-card">
-              <div class="k">Last session</div>
-              <div class="ph-metrics">
-                <div><div class="m">7,358<small>m</small></div><div class="d"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg> 12% vs your avg</div></div>
-                <div><div class="m">31.4<small>km/h</small></div><div class="d"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg> 4% vs your avg</div></div>
+  <section class="feature">
+    <div class="wrap">
+      <div class="split">
+        <div class="copy">
+          <span class="eyebrow">The player app</span>
+          <h2>Every player sees their own numbers.</h2>
+          <p class="lede">Their next fixture, their training week, and how their last session compared with their own average. Personal bests, plain-English explanations and their position rank. Never another player's numbers.</p>
+          <p class="lede">It isn't a feature. It's why they keep filling in the check-in.</p>
+        </div>
+        <div class="fig">
+          <div class="phone">
+            <div class="screen">
+              <div class="ph-hi">Good morning<small>Seniors &middot; Mon 21/09/2026</small></div>
+              <div class="ph-card ink">
+                <div class="k">Next fixture &middot; #10</div>
+                <div class="v">MD-4, Round 15</div>
               </div>
-              <svg class="spark" viewBox="0 0 200 34" preserveAspectRatio="none" aria-label="Your distance over your last six sessions, against your average" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <path class="avg" d="M2 19H198" vector-effect="non-scaling-stroke"/>
-                <path class="own" d="M2 24L41 17L80 22L119 14L158 20L198 8" vector-effect="non-scaling-stroke"/>
-              </svg>
-              <div class="legend"><span><i></i>You</span><span><i class="avg"></i>Your average</span></div>
-            </div>
-            <div class="ph-card">
-              <div class="k">Wellness</div>
-              <div class="v" style="font-size:.8rem">Due today</div>
+              <div class="ph-card">
+                <div class="k">Last session</div>
+                <div class="ph-metrics">
+                  <div><div class="m">7,358<small>m</small></div><div class="d"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg> 12% vs your avg</div></div>
+                  <div><div class="m">31.4<small>km/h</small></div><div class="d"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg> 4% vs your avg</div></div>
+                </div>
+                <svg class="spark" viewBox="0 0 200 34" preserveAspectRatio="none" aria-label="Your distance over your last six sessions, against your average" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path class="avg" d="M2 19H198" vector-effect="non-scaling-stroke"/>
+                  <path class="own" d="M2 24L41 17L80 22L119 14L158 20L198 8" vector-effect="non-scaling-stroke"/>
+                </svg>
+                <div class="legend"><span><i></i>You</span><span><i class="avg"></i>Your average</span></div>
+              </div>
+              <div class="ph-card">
+                <div class="k">Wellness</div>
+                <div class="v" style="font-size:.8rem">Due today</div>
+              </div>
             </div>
           </div>
         </div>
@@ -473,184 +500,194 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     </div>
   </section>
 
-  <section class="wrap rule feature" id="what">
-    <div class="split">
-      <div class="copy">
-        <span class="eyebrow">GPS load and injury-risk alerts</span>
-        <h2>Know who's at risk before they get injured.</h2>
-        <p class="lede">Upload your GPS data and Touchline tracks each player's load against their own normal. If someone is doing too much, you'll know before it becomes an injury.</p>
-      </div>
-      <div class="fig compact">
-        <div class="card load-card reveal">
-          <div class="p-head">
-            <span class="p-title">Squad load</span>
-            <span class="p-note">MD-1, example squad</span>
-          </div>
-          <div class="ld-sum">
-            <div><span class="ts-n">1.18<small>ACWR</small></span><span class="ts-k">Squad average, inside the target range</span></div>
-          </div>
-          <svg class="ld-chart" viewBox="0 12 320 104" role="img" aria-label="Squad average ACWR over the last six weeks, rising from 0.95 to 1.18 and staying inside the 0.8 to 1.3 target range.">
-            <rect class="band" x="6" y="21.1" width="308" height="65.8" rx="6"/>
-            <path class="edge" d="M6 21.1H314M6 86.9H314"/>
-            <text class="lbl" x="12" y="79.9">Target 0.8 to 1.3</text>
-            <path class="area" d="M16 67.1 L70 57.9 L124 47.4 L178 52.7 L232 42.2 L286 36.9 L286 86.9 L16 86.9 Z"/>
-            <path class="line draw" pathLength="1" d="M16 67.1 L70 57.9 L124 47.4 L178 52.7 L232 42.2 L286 36.9"/>
-            <circle class="pulse" cx="286" cy="36.9" r="5"/>
-            <circle class="pt" cx="286" cy="36.9" r="4.2"/>
-            <text class="ax" x="16" y="114">6 weeks ago</text>
-            <text class="ax end" x="286" y="114">This week</text>
-          </svg>
-          <div class="rows ld-rows">
-            <div class="row">
-              <span class="who">#9 &middot; ST</span><span class="status risk">High risk</span><span class="val">1.62</span>
-              <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:85.0%;background:var(--st-risk)"></i></span>
-            </div>
-            <div class="row">
-              <span class="who">#7 &middot; RW</span><span class="status caution">Caution</span><span class="val">1.38</span>
-              <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:65.0%;background:var(--st-caution)"></i></span>
-            </div>
-            <div class="row">
-              <span class="who">#4 &middot; CB</span><span class="status ok">Available</span><span class="val">1.04</span>
-              <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:36.7%;background:var(--st-ok)"></i></span>
-            </div>
-            <div class="row">
-              <span class="who">#8 &middot; CM</span><span class="status none">No alerts</span><span class="val">0.91</span>
-              <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:25.8%;background:var(--st-none)"></i></span>
-            </div>
-          </div>
+  <section class="feature" id="what">
+    <div class="wrap">
+      <div class="split">
+        <div class="copy">
+          <span class="eyebrow">GPS load and injury-risk alerts</span>
+          <h2>Know who's at risk before they get injured.</h2>
+          <p class="lede">Upload your GPS data and Touchline tracks each player's load against their own normal. If someone is doing too much, you'll know before it becomes an injury.</p>
         </div>
-        <p class="fig-note">Example squad. ACWR on a 28-day rolling baseline.</p>
+        <div class="fig compact">
+          <div class="card load-card reveal">
+            <div class="p-head">
+              <span class="p-title">Squad load</span>
+              <span class="p-note">MD-1, example squad</span>
+            </div>
+            <div class="ld-sum">
+              <div><span class="ts-n">1.18<small>ACWR</small></span><span class="ts-k">Squad average, inside the target range</span></div>
+            </div>
+            <svg class="ld-chart" viewBox="0 12 320 104" role="img" aria-label="Squad average ACWR over the last six weeks, rising from 0.95 to 1.18 and staying inside the 0.8 to 1.3 target range.">
+              <rect class="band" x="6" y="21.1" width="308" height="65.8" rx="6"/>
+              <path class="edge" d="M6 21.1H314M6 86.9H314"/>
+              <text class="lbl" x="12" y="79.9">Target 0.8 to 1.3</text>
+              <path class="area" d="M16 67.1 L70 57.9 L124 47.4 L178 52.7 L232 42.2 L286 36.9 L286 86.9 L16 86.9 Z"/>
+              <path class="line draw" pathLength="1" d="M16 67.1 L70 57.9 L124 47.4 L178 52.7 L232 42.2 L286 36.9"/>
+              <circle class="pulse" cx="286" cy="36.9" r="5"/>
+              <circle class="pt" cx="286" cy="36.9" r="4.2"/>
+              <text class="ax" x="16" y="114">6 weeks ago</text>
+              <text class="ax end" x="286" y="114">This week</text>
+            </svg>
+            <div class="rows ld-rows">
+              <div class="row">
+                <span class="who">#9 &middot; ST</span><span class="status risk">High risk</span><span class="val">1.62</span>
+                <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:85.0%;background:var(--st-risk)"></i></span>
+              </div>
+              <div class="row">
+                <span class="who">#7 &middot; RW</span><span class="status caution">Caution</span><span class="val">1.38</span>
+                <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:65.0%;background:var(--st-caution)"></i></span>
+              </div>
+              <div class="row">
+                <span class="who">#4 &middot; CB</span><span class="status ok">Available</span><span class="val">1.04</span>
+                <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:36.7%;background:var(--st-ok)"></i></span>
+              </div>
+              <div class="row">
+                <span class="who">#8 &middot; CM</span><span class="status none">No alerts</span><span class="val">0.91</span>
+                <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:25.8%;background:var(--st-none)"></i></span>
+              </div>
+            </div>
+          </div>
+          <p class="fig-note">Example squad. ACWR on a 28-day rolling baseline.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="wrap rule feature" id="team-sheets">
-    <div class="split">
-      <div class="copy">
-        <span class="eyebrow">Team sheets</span>
-        <h2>Pick your team with the data in front of you.</h2>
-        <p class="lede">See every player's load and readiness as you pick your team. Players at risk are flagged, with a fit replacement from the bench.</p>
-        <p class="lede">You still make the call. Now you make it with the numbers.</p>
-      </div>
-      <div class="fig compact">
-        <div class="card ts-card">
-          <div class="p-head">
-            <span class="p-title">Team sheet</span>
-            <span class="p-note">Round 15, Fri 25/09/2026, example</span>
-          </div>
-          <div class="ts-sum">
-            <div><span class="ts-n">9<small>of 11</small></span><span class="ts-k">Ready to start</span></div>
-            <div class="chips">
-              <span class="chip"><span class="status caution">Caution</span><b>1</b></span>
-              <span class="chip"><span class="status risk">High risk</span><b>1</b></span>
+  <section class="feature" id="team-sheets">
+    <div class="wrap">
+      <div class="split">
+        <div class="copy">
+          <span class="eyebrow">Team sheets</span>
+          <h2>Pick your team with the data in front of you.</h2>
+          <p class="lede">See every player's load and readiness as you pick your team. Players at risk are flagged, with a fit replacement from the bench.</p>
+          <p class="lede">You still make the call. Now you make it with the numbers.</p>
+        </div>
+        <div class="fig compact">
+          <div class="card ts-card">
+            <div class="p-head">
+              <span class="p-title">Team sheet</span>
+              <span class="p-note">Round 15, Fri 25/09/2026, example</span>
             </div>
-          </div>
-          <svg class="ts-pitch" viewBox="0 0 340 220" role="img" aria-label="Starting XI in a 4-3-3 on a pitch. Number 9 is flagged High risk and swaps with number 19. Number 7 is flagged Caution and swaps with number 17.">
-            <defs>
-              <radialGradient id="ts-glow" cx="50%" cy="40%" r="70%">
-                <stop offset="0" stop-color="#ffffff" stop-opacity=".16"/>
-                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-              </radialGradient>
-              <clipPath id="ts-clip"><rect x="6" y="6" width="328" height="208" rx="12"/></clipPath>
-            </defs>
-            <rect class="turf" x="6" y="6" width="328" height="208" rx="12"/>
-            <g clip-path="url(#ts-clip)"><rect class="stripe" x="6" y="6" width="20.5" height="208"/><rect class="stripe" x="47" y="6" width="20.5" height="208"/><rect class="stripe" x="88" y="6" width="20.5" height="208"/><rect class="stripe" x="129" y="6" width="20.5" height="208"/><rect class="stripe" x="170" y="6" width="20.5" height="208"/><rect class="stripe" x="211" y="6" width="20.5" height="208"/><rect class="stripe" x="252" y="6" width="20.5" height="208"/><rect class="stripe" x="293" y="6" width="20.5" height="208"/><rect x="6" y="6" width="328" height="208" fill="url(#ts-glow)"/></g>
-            <g class="ln">
-              <rect x="14" y="14" width="312" height="192" rx="3"/>
-              <path d="M170 14V206"/>
-              <circle cx="170" cy="110" r="27"/>
-              <rect x="14" y="62" width="44" height="96"/>
-              <rect x="282" y="62" width="44" height="96"/>
-              <path d="M58 92A20 20 0 0 1 58 128M282 92A20 20 0 0 0 282 128"/>
-            </g>
+            <div class="ts-sum">
+              <div><span class="ts-n">9<small>of 11</small></span><span class="ts-k">Ready to start</span></div>
+              <div class="chips">
+                <span class="chip"><span class="status caution">Caution</span><b>1</b></span>
+                <span class="chip"><span class="status risk">High risk</span><b>1</b></span>
+              </div>
+            </div>
+            <svg class="ts-pitch" viewBox="0 0 340 220" role="img" aria-label="Starting XI in a 4-3-3 on a pitch. Number 9 is flagged High risk and swaps with number 19. Number 7 is flagged Caution and swaps with number 17.">
+              <defs>
+                <radialGradient id="ts-glow" cx="50%" cy="40%" r="70%">
+                  <stop offset="0" stop-color="#ffffff" stop-opacity=".16"/>
+                  <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+                </radialGradient>
+                <clipPath id="ts-clip"><rect x="6" y="6" width="328" height="208" rx="12"/></clipPath>
+              </defs>
+              <rect class="turf" x="6" y="6" width="328" height="208" rx="12"/>
+              <g clip-path="url(#ts-clip)"><rect class="stripe" x="6" y="6" width="20.5" height="208"/><rect class="stripe" x="47" y="6" width="20.5" height="208"/><rect class="stripe" x="88" y="6" width="20.5" height="208"/><rect class="stripe" x="129" y="6" width="20.5" height="208"/><rect class="stripe" x="170" y="6" width="20.5" height="208"/><rect class="stripe" x="211" y="6" width="20.5" height="208"/><rect class="stripe" x="252" y="6" width="20.5" height="208"/><rect class="stripe" x="293" y="6" width="20.5" height="208"/><rect x="6" y="6" width="328" height="208" fill="url(#ts-glow)"/></g>
+              <g class="ln">
+                <rect x="14" y="14" width="312" height="192" rx="3"/>
+                <path d="M170 14V206"/>
+                <circle cx="170" cy="110" r="27"/>
+                <rect x="14" y="62" width="44" height="96"/>
+                <rect x="282" y="62" width="44" height="96"/>
+                <path d="M58 92A20 20 0 0 1 58 128M282 92A20 20 0 0 0 282 128"/>
+              </g>
             
-<g class="pm"><circle class="disc" cx="30" cy="110" r="13"/><text x="30" y="110">1</text></g>            <g class="pm"><circle class="disc" cx="92" cy="40" r="13"/><text x="92" y="40">3</text></g>            <g class="pm"><circle class="disc" cx="92" cy="85" r="13"/><text x="92" y="85">4</text></g>            <g class="pm"><circle class="disc" cx="92" cy="135" r="13"/><text x="92" y="135">5</text></g>            <g class="pm"><circle class="disc" cx="92" cy="180" r="13"/><text x="92" y="180">2</text></g>            <g class="pm"><circle class="disc" cx="172" cy="60" r="13"/><text x="172" y="60">10</text></g>            <g class="pm"><circle class="disc" cx="172" cy="110" r="13"/><text x="172" y="110">8</text></g>            <g class="pm"><circle class="disc" cx="172" cy="160" r="13"/><text x="172" y="160">6</text></g>            <g class="pm"><circle class="disc" cx="252" cy="50" r="13"/><text x="252" y="50">11</text></g>            <g class="pm sw-out"><circle class="disc" cx="268" cy="110" r="13"/><circle class="ring risk" cx="268" cy="110" r="16.5"/><text x="268" y="110">9</text><rect class="bdg risk" x="275.5" y="92.5" width="9" height="9"/></g>            <g class="pm sw-in"><circle class="disc" cx="268" cy="110" r="13"/><circle class="ring ok" cx="268" cy="110" r="16.5"/><text x="268" y="110">19</text><circle class="bdg ok" cx="280" cy="97" r="4.8"/></g>            <g class="pm sw-out d2"><circle class="disc" cx="252" cy="170" r="13"/><circle class="ring caution" cx="252" cy="170" r="16.5"/><text x="252" y="170">7</text><rect class="bdg caution" x="260" y="153" width="8" height="8" transform="rotate(45 264 157)"/></g>            <g class="pm sw-in d2"><circle class="disc" cx="252" cy="170" r="13"/><circle class="ring ok" cx="252" cy="170" r="16.5"/><text x="252" y="170">17</text><circle class="bdg ok" cx="264" cy="157" r="4.8"/></g>
-          </svg>
-          <div class="swaps">
-            <div class="swap">
-              <div class="row"><span class="who">#9 &middot; ST</span><span class="status risk">High risk</span><span class="val">1.62</span></div>
-              <div class="sub"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h13M15 5l3 3-3 3M19 16H6M9 13l-3 3 3 3"/></svg>Replace with #19 &middot; ST <span class="status ok">Available</span></div>
-            </div>
-            <div class="swap">
-              <div class="row"><span class="who">#7 &middot; RW</span><span class="status caution">Caution</span><span class="val">1.38</span></div>
-              <div class="sub"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h13M15 5l3 3-3 3M19 16H6M9 13l-3 3 3 3"/></svg>Replace with #17 &middot; RW <span class="status ok">Available</span></div>
+  <g class="pm"><circle class="disc" cx="30" cy="110" r="13"/><text x="30" y="110">1</text></g>            <g class="pm"><circle class="disc" cx="92" cy="40" r="13"/><text x="92" y="40">3</text></g>            <g class="pm"><circle class="disc" cx="92" cy="85" r="13"/><text x="92" y="85">4</text></g>            <g class="pm"><circle class="disc" cx="92" cy="135" r="13"/><text x="92" y="135">5</text></g>            <g class="pm"><circle class="disc" cx="92" cy="180" r="13"/><text x="92" y="180">2</text></g>            <g class="pm"><circle class="disc" cx="172" cy="60" r="13"/><text x="172" y="60">10</text></g>            <g class="pm"><circle class="disc" cx="172" cy="110" r="13"/><text x="172" y="110">8</text></g>            <g class="pm"><circle class="disc" cx="172" cy="160" r="13"/><text x="172" y="160">6</text></g>            <g class="pm"><circle class="disc" cx="252" cy="50" r="13"/><text x="252" y="50">11</text></g>            <g class="pm sw-out"><circle class="disc" cx="268" cy="110" r="13"/><circle class="ring risk" cx="268" cy="110" r="16.5"/><text x="268" y="110">9</text><rect class="bdg risk" x="275.5" y="92.5" width="9" height="9"/></g>            <g class="pm sw-in"><circle class="disc" cx="268" cy="110" r="13"/><circle class="ring ok" cx="268" cy="110" r="16.5"/><text x="268" y="110">19</text><circle class="bdg ok" cx="280" cy="97" r="4.8"/></g>            <g class="pm sw-out d2"><circle class="disc" cx="252" cy="170" r="13"/><circle class="ring caution" cx="252" cy="170" r="16.5"/><text x="252" y="170">7</text><rect class="bdg caution" x="260" y="153" width="8" height="8" transform="rotate(45 264 157)"/></g>            <g class="pm sw-in d2"><circle class="disc" cx="252" cy="170" r="13"/><circle class="ring ok" cx="252" cy="170" r="16.5"/><text x="252" y="170">17</text><circle class="bdg ok" cx="264" cy="157" r="4.8"/></g>
+            </svg>
+            <div class="swaps">
+              <div class="swap">
+                <div class="row"><span class="who">#9 &middot; ST</span><span class="status risk">High risk</span><span class="val">1.62</span></div>
+                <div class="sub"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h13M15 5l3 3-3 3M19 16H6M9 13l-3 3 3 3"/></svg>Replace with #19 &middot; ST <span class="status ok">Available</span></div>
+              </div>
+              <div class="swap">
+                <div class="row"><span class="who">#7 &middot; RW</span><span class="status caution">Caution</span><span class="val">1.38</span></div>
+                <div class="sub"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h13M15 5l3 3-3 3M19 16H6M9 13l-3 3 3 3"/></svg>Replace with #17 &middot; RW <span class="status ok">Available</span></div>
+              </div>
             </div>
           </div>
-        </div>
-        <p class="fig-note">Example team sheet. Figures are ACWR.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap rule feature">
-    <div class="split">
-      <div class="copy">
-        <span class="eyebrow">Wellness</span>
-        <h2>A 30-second check-in, every morning.</h2>
-        <p class="lede">Players rate their sleep, soreness, energy and mood. Touchline learns each player's normal, so a real dip stands out.</p>
-        <p class="lede">Answers go straight to your coaching and medical staff.</p>
-      </div>
-      <div class="fig">
-        <div class="card">
-          <div class="p-head"><span class="p-title">How are you feeling?</span><span class="p-note">Wed 23/09/2026</span></div>
-          <div class="scale-row"><span>Sleep quality</span><div class="scale"><b>1</b><b>2</b><b>3</b><b class="on">4</b><b>5</b></div></div>
-          <div class="scale-row"><span>Muscle soreness</span><div class="scale"><b>1</b><b>2</b><b class="on">3</b><b>4</b><b>5</b></div></div>
-          <div class="scale-row"><span>Energy</span><div class="scale"><b>1</b><b>2</b><b>3</b><b class="on">4</b><b>5</b></div></div>
+          <p class="fig-note">Example team sheet. Figures are ACWR.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="wrap rule" id="league">
-    <div class="copy" style="max-width:58ch">
-      <span class="eyebrow">For leagues and federations</span>
-      <h2>One picture of the whole competition.</h2>
-      <p class="lede">When your clubs run Touchline, your league gets fixtures and ladders across every grade, player statistics by age group, a team of the week picked from the team sheets rather than a committee, and a fantasy competition that puts families in your league's news every week.</p>
-      <p class="lede">Each club keeps its own data. The league sees counts, never a player's medical record.</p>
-      <a class="btn ghost" href="#demo" style="margin-top:8px">Talk to us about a competition licence</a>
+  <section class="feature">
+    <div class="wrap">
+      <div class="split">
+        <div class="copy">
+          <span class="eyebrow">Wellness</span>
+          <h2>A 30-second check-in, every morning.</h2>
+          <p class="lede">Players rate their sleep, soreness, energy and mood. Touchline learns each player's normal, so a real dip stands out.</p>
+          <p class="lede">Answers go straight to your coaching and medical staff.</p>
+        </div>
+        <div class="fig">
+          <div class="card">
+            <div class="p-head"><span class="p-title">How are you feeling?</span><span class="p-note">Wed 23/09/2026</span></div>
+            <div class="scale-row"><span>Sleep quality</span><div class="scale"><b>1</b><b>2</b><b>3</b><b class="on">4</b><b>5</b></div></div>
+            <div class="scale-row"><span>Muscle soreness</span><div class="scale"><b>1</b><b>2</b><b class="on">3</b><b>4</b><b>5</b></div></div>
+            <div class="scale-row"><span>Energy</span><div class="scale"><b>1</b><b>2</b><b>3</b><b class="on">4</b><b>5</b></div></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="wrap rule" id="demo">
-    <div class="split">
-      <div class="copy">
-        <span class="eyebrow">Request a demo</span>
-        <h2>See Touchline in action.</h2>
-        <p class="lede">We'll walk you through Touchline with an example squad, from GPS load to the team sheet. No obligation, and we'll tell you if it isn't a fit.</p>
+  <section id="league">
+    <div class="wrap">
+      <div class="copy" style="max-width:58ch">
+        <span class="eyebrow">For leagues and federations</span>
+        <h2>One picture of the whole competition.</h2>
+        <p class="lede">When your clubs run Touchline, your league gets fixtures and ladders across every grade, player statistics by age group, a team of the week picked from the team sheets rather than a committee, and a fantasy competition that puts families in your league's news every week.</p>
+        <p class="lede">Each club keeps its own data. The league sees counts, never a player's medical record.</p>
+        <a class="btn ghost" href="#demo" style="margin-top:8px">Talk to us about a competition licence</a>
       </div>
-      <div class="fig">
-        <div class="form-card">
-          <form id="demo-form" novalidate>
-            <div class="fields">
-              <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Alex Rivera" required></div>
-              <div class="field"><label for="f-club">Club</label><input id="f-club" name="club" type="text" placeholder="Your club" required></div>
-              <div class="field"><label for="f-role">Your role</label>
-                <select id="f-role" name="role">
-                  <option>Head coach</option><option>Assistant coach</option>
-                  <option>Strength and conditioning</option><option>Physio</option>
-                  <option>Technical director</option><option>Club admin or committee</option>
-                </select>
+    </div>
+  </section>
+
+  <section id="demo">
+    <div class="wrap">
+      <div class="split">
+        <div class="copy">
+          <span class="eyebrow">Request a demo</span>
+          <h2>See Touchline in action.</h2>
+          <p class="lede">We'll walk you through Touchline with an example squad, from GPS load to the team sheet. No obligation, and we'll tell you if it isn't a fit.</p>
+        </div>
+        <div class="fig">
+          <div class="form-card">
+            <form id="demo-form" novalidate>
+              <div class="fields">
+                <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Alex Rivera" required></div>
+                <div class="field"><label for="f-club">Club</label><input id="f-club" name="club" type="text" placeholder="Your club" required></div>
+                <div class="field"><label for="f-role">Your role</label>
+                  <select id="f-role" name="role">
+                    <option>Head coach</option><option>Assistant coach</option>
+                    <option>Strength and conditioning</option><option>Physio</option>
+                    <option>Technical director</option><option>Club admin or committee</option>
+                  </select>
+                </div>
+                <div class="field"><label for="f-gps">GPS units</label>
+                  <select id="f-gps" name="gps">
+                    <option>Catapult</option><option>STATSports</option>
+                    <option>Another provider</option><option>None yet</option>
+                  </select>
+                </div>
+                <div class="field wide"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@club.com.au" required></div>
               </div>
-              <div class="field"><label for="f-gps">GPS units</label>
-                <select id="f-gps" name="gps">
-                  <option>Catapult</option><option>STATSports</option>
-                  <option>Another provider</option><option>None yet</option>
-                </select>
+              <div class="form-foot">
+                <button class="btn primary lg" type="submit">Request a demo</button>
+                <span class="small">We'll reply within two business days. Your details go nowhere else.</span>
               </div>
-              <div class="field wide"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@club.com.au" required></div>
-            </div>
-            <div class="form-foot">
-              <button class="btn primary lg" type="submit">Request a demo</button>
-              <span class="small">We'll reply within two business days. Your details go nowhere else.</span>
-            </div>
-          </form>
-          <div class="sent" id="demo-sent" hidden>
-            <h3>That's everything we need.</h3>
-            <p class="small" style="color:var(--text-2);max-width:40ch">This preview doesn't send mail yet. Copy the address below and send us the same details, and we'll come back to you within two business days.</p>
-            <div class="echo" id="demo-echo"></div>
-            <div class="mailto">
-              <code id="demo-email">hello@touchline.com.au</code>
-              <button class="btn ghost" type="button" id="copy-btn">Copy address</button>
+            </form>
+            <div class="sent" id="demo-sent" hidden>
+              <h3>That's everything we need.</h3>
+              <p class="small" style="color:var(--text-2);max-width:40ch">This preview doesn't send mail yet. Copy the address below and send us the same details, and we'll come back to you within two business days.</p>
+              <div class="echo" id="demo-echo"></div>
+              <div class="mailto">
+                <code id="demo-email">hello@touchline.com.au</code>
+                <button class="btn ghost" type="button" id="copy-btn">Copy address</button>
+              </div>
             </div>
           </div>
         </div>
