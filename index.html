@@ -180,7 +180,8 @@ section { padding-block: clamp(64px, 9vw, 116px); }
 .aud-grid p { font-size: .92rem; color: var(--text-2); }
 
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
-.split.flip .fig { order: -1; }
+/* Feature sections alternate sides automatically: every second one puts the figure on the left. */
+main > section.feature:nth-child(even of .feature) .split .fig { order: -1; }
 .copy { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; min-width: 0; }
 
 /* ---------- cards, tiles and interface fragments ---------- */
@@ -292,7 +293,7 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
 
 @media (max-width: 860px) {
   .hero-grid, .split { grid-template-columns: 1fr; }
-  .split.flip .fig { order: 0; }
+  main > section.feature:nth-child(even of .feature) .split .fig { order: 0; }
   .aud-grid { grid-template-columns: 1fr 1fr; }
   nav { display: none; }
 }
@@ -391,7 +392,7 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     </div>
   </section>
 
-  <section class="wrap">
+  <section class="wrap feature">
     <div class="split">
       <div class="copy">
         <span class="eyebrow">The player app</span>
@@ -429,7 +430,7 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     </div>
   </section>
 
-  <section class="wrap rule" id="what">
+  <section class="wrap rule feature" id="what">
     <div class="split">
       <div class="copy">
         <span class="eyebrow">GPS load and injury-risk alerts</span>
@@ -449,8 +450,8 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     </div>
   </section>
 
-  <section class="wrap rule">
-    <div class="split flip">
+  <section class="wrap rule feature">
+    <div class="split">
       <div class="copy">
         <span class="eyebrow">Wellness</span>
         <h2>Thirty seconds, before they get out of bed.</h2>
