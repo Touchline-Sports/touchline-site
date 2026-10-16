@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Touchline</title>
+<meta name="description" content="Touchline is a squad performance hub for football clubs. Coming soon.">
+<meta name="theme-color" content="#2b2e33">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b2e33' stroke-width='1.8'%3E%3Crect x='2.4' y='4.6' width='19.2' height='14.8' rx='2'/%3E%3Cpath d='M12 4.6V19.4'/%3E%3Ccircle cx='12' cy='12' r='3.3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
+
+<style>
+/* Temporary "coming soon" page for the Touchline domain.
+   Self-contained: this folder (index.html plus its own assets/) can be deployed on its own.
+   Same brand as index.html (Touchline brand guidelines, Version 1, October 2026):
+   the night-pitch hero fills the screen, with one line about Touchline and a short demo request. */
+:root {
+  /* Brand palette */
+  --graphite: #2b2e33;
+  --ink: #15171a;
+  --card: #f3f3f1;
+  --page: #e6e7e9;
+
+  --on-cover: #ffffff;
+  --text: var(--ink);
+  --text-2: #4f555c;
+  --muted: #7b8088;
+  --hair: rgba(21, 23, 26, .14);
+
+  --radius-card: 22px;
+  --mark: 24px;
+  --font: -apple-system, BlinkMacSystemFont, Inter, system-ui, sans-serif;
+  color-scheme: dark;
+}
+/* The page is always the dark cover, so it reads the same in light and dark mode.
+   The form card stays light in both, as the team sheet does on the main site. */
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--graphite) url("assets/hero-poster.jpg") center / cover no-repeat;
+  color: var(--on-cover);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+h1, h2 { margin: 0; text-wrap: balance; font-weight: 700; }
+h1 { font-size: clamp(2.5rem, 6.4vw, 4.1rem); line-height: 1.03; letter-spacing: -.045em; }
+h2 { font-size: 1.35rem; line-height: 1.2; letter-spacing: -.03em; }
+p { margin: 0; }
+a { color: inherit; }
+
+.wrap {
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- the mark ---------- */
+.lockup { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: inherit; }
+.lockup svg { display: block; width: var(--mark); height: var(--mark); flex: none; }
+.lockup b { font-size: 1.22rem; font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+.icon { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.12em; }
+
+/* ---------- the cover ---------- */
+.cover {
+  position: relative; isolation: isolate; overflow: hidden;
+  min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.hero-video { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.hero-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(43, 46, 51, .9) 0%, rgba(43, 46, 51, .7) 55%, rgba(43, 46, 51, .5) 100%); }
+
+.top { padding-block: 22px; }
+
+.main { flex: 1; display: flex; align-items: center; padding-block: clamp(32px, 6vw, 72px); }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.copy { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+.lede { font-size: clamp(1.05rem, 1.7vw, 1.2rem); color: rgba(255, 255, 255, .8); max-width: 44ch; }
+.pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
+.pills li { font-size: .85rem; color: rgba(255, 255, 255, .85); padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .3); }
+
+/* ---------- form card ---------- */
+.form-card {
+  background: var(--card); color: var(--text);
+  border-radius: var(--radius-card);
+  padding: clamp(22px, 3.5vw, 32px);
+  display: flex; flex-direction: column; gap: 18px;
+  color-scheme: light;
+}
+.form-card .sub { font-size: .92rem; color: var(--text-2); margin-top: 6px; }
+.fields { display: grid; gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+label { font-size: .8rem; color: var(--text-2); }
+input, select {
+  font-family: var(--font); font-size: .97rem; color: var(--text);
+  background: #ffffff; border: 1px solid var(--hair);
+  border-radius: 12px; padding: 11px 13px; width: 100%;
+}
+input[aria-invalid="true"] { border-color: var(--text); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; border: 0; border-radius: 999px; cursor: pointer;
+  font-family: var(--font); font-size: 1rem; font-weight: 700; letter-spacing: -.01em;
+  padding: 14px 28px; text-decoration: none; white-space: nowrap;
+  transition: transform .14s ease, opacity .14s ease, border-color .14s ease;
+}
+.btn.primary { background: var(--ink); color: var(--card); width: 100%; }
+.btn.primary:hover { transform: translateY(-1px); opacity: .9; }
+.btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--hair); padding: 9px 18px; font-size: .9rem; }
+.btn.ghost:hover { border-color: var(--text); }
+.small { font-size: .8rem; color: var(--muted); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.cover > .top :focus-visible, .foot :focus-visible { outline-color: #ffffff; }
+
+.sent { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.sent p { font-size: .92rem; color: var(--text-2); }
+.mailto { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.mailto code { font-family: var(--font); font-size: .88rem; background: #ffffff; border: 1px solid var(--hair); border-radius: 999px; padding: 8px 15px; user-select: all; }
+
+/* ---------- footer ---------- */
+.foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-block: 20px 26px; font-size: .85rem; color: rgba(255, 255, 255, .62); border-top: 1px solid rgba(255, 255, 255, .12); }
+.social { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: rgba(255, 255, 255, .8); }
+.social span.ring { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .3); }
+.social .icon { font-size: 18px; }
+.social:hover { color: #ffffff; }
+.social:hover span.ring { border-color: #ffffff; }
+
+@media (max-width: 860px) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-shade { background: linear-gradient(180deg, rgba(43, 46, 51, .82) 0%, rgba(43, 46, 51, .74) 100%); }
+}
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .top { padding-block: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
+    <source src="assets/hero.webm" type="video/webm">
+    <source src="assets/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-shade"></div>
+
+  <header class="top">
+    <div class="wrap">
+      <span class="lockup" aria-label="touchline">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="2.4" y="4.6" width="19.2" height="14.8" rx="2"></rect>
+          <path d="M12 4.6V19.4"></path>
+          <circle cx="12" cy="12" r="3.3"></circle>
+        </svg>
+        <b>touchline</b>
+      </span>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="wrap grid">
+      <div class="copy">
+        <h1>Your whole squad.<br>One place.</h1>
+        <p class="lede">Touchline is a squad performance hub for football clubs. We're getting it ready to launch.</p>
+        <ul class="pills" aria-label="What Touchline does">
+          <li>GPS load</li>
+          <li>Injury-risk alerts</li>
+          <li>Wellness</li>
+          <li>Fixtures</li>
+          <li>Team sheets</li>
+        </ul>
+      </div>
+
+      <div class="form-card" id="demo">
+        <form id="demo-form" novalidate>
+          <div style="margin-bottom:18px">
+            <h2>Request a demo</h2>
+            <p class="sub">Leave your details and we'll show you around.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="f-club">Club or league</label><input id="f-club" name="club" type="text" autocomplete="organization" required></div>
+            <div class="field"><label for="f-role">Your role</label>
+              <select id="f-role" name="role">
+                <option>Head coach</option><option>Assistant coach</option>
+                <option>Strength and conditioning</option><option>Physio</option>
+                <option>Technical director</option><option>Club admin or committee</option>
+                <option>League official</option>
+              </select>
+            </div>
+            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px">
+            <button class="btn primary" type="submit">Request a demo</button>
+            <span class="small">Your details go nowhere else.</span>
+          </div>
+        </form>
+
+        <div class="sent" id="demo-sent" hidden>
+          <h2>Thanks, nearly done.</h2>
+          <p>Your email app should open with your details filled in. Press send and we'll be in touch. If it didn't open, email us at this address.</p>
+          <div class="mailto">
+            <code id="demo-email">hello@touchline.com.au</code>
+            <button class="btn ghost" type="button" id="copy-btn">Copy address</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="wrap">
+    <div class="foot">
+      <span>&copy; <span id="year">2026</span> Touchline</span>
+      <a class="social" href="https://www.instagram.com/touchline.sports/">
+        <span class="ring"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17 7h.01"/></svg></span>
+        Follow our Instagram
+      </a>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var v = document.querySelector('.hero-video');
+  if (v && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    v.removeAttribute('autoplay');
+    v.pause();
+  }
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+
+(function () {
+  // No server behind this page: the request opens the visitor's email app, addressed to us and filled in.
+  var TO = 'hello@touchline.com.au';
+  var form = document.getElementById('demo-form');
+  var sent = document.getElementById('demo-sent');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    var missing = ['name', 'club', 'email'].filter(function (k) {
+      return !String(data.get(k) || '').trim();
+    });
+    if (missing.length) {
+      var el = document.getElementById('f-' + missing[0]);
+      el.focus();
+      el.setAttribute('aria-invalid', 'true');
+      return;
+    }
+    var body = [
+      'Name: ' + data.get('name'),
+      'Club or league: ' + data.get('club'),
+      'Role: ' + data.get('role'),
+      'Email: ' + data.get('email')
+    ].join('\n');
+    var subject = 'Demo request: ' + data.get('club');
+    window.location.href = 'mailto:' + TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    form.hidden = true;
+    sent.hidden = false;
+  });
+
+  ['f-name', 'f-club', 'f-email'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', function () { this.removeAttribute('aria-invalid'); });
+  });
+
+  document.getElementById('copy-btn').addEventListener('click', function () {
+    var btn = this;
+    var done = function () {
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = 'Copy address'; }, 1800);
+    };
+    try {
+      navigator.clipboard.writeText(TO).then(done, function () {
+        var r = document.createRange();
+        r.selectNode(document.getElementById('demo-email'));
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(r);
+      });
+    } catch (err) {
+      btn.textContent = 'Select it above';
+    }
+  });
+})();
+</script>
+</body>
+</html>
