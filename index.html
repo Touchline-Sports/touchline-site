@@ -194,6 +194,20 @@ main > section:nth-of-type(odd):not(.hero) {
   --inverse: #f3f3f1;
   --on-inverse: var(--ink);
 }
+/* The phone mock-up always shows a light screen, so it stands out on dark grounds in both themes. */
+.phone {
+  --bg: #ffffff;
+  --surface: var(--card);
+  --text: var(--ink);
+  --text-2: #4f555c;
+  --muted: #7b8088;
+  --hair: rgba(21, 23, 26, .14);
+  --hair-soft: rgba(21, 23, 26, .08);
+  --own: var(--red);
+  --inverse: var(--ink);
+  --on-inverse: var(--card);
+  color: var(--text);
+}
 .hero { position: relative; overflow: hidden; isolation: isolate; padding-block: clamp(56px, 8vw, 96px) clamp(48px, 7vw, 84px); }
 .hero > .wrap { position: relative; }
 
