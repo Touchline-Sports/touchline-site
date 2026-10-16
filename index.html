@@ -195,7 +195,7 @@ main > section:nth-of-type(odd):not(.hero) {
   --on-inverse: var(--ink);
 }
 /* The phone mock-up and the team sheet always show a light surface, so they stand out on dark grounds in both themes. */
-.phone, .ts-card {
+.phone, .ts-card, .lg-card {
   --bg: #ffffff;
   --surface: var(--card);
   --text: var(--ink);
@@ -212,7 +212,7 @@ main > section:nth-of-type(odd):not(.hero) {
   --st-none: #8d9299;
   color: var(--text);
 }
-.ts-card { --surface: #ffffff; --bg: var(--card); }
+.ts-card, .lg-card { --surface: #ffffff; --bg: var(--card); }
 .hero { position: relative; overflow: hidden; isolation: isolate; padding-block: clamp(56px, 8vw, 96px) clamp(48px, 7vw, 84px); }
 .hero > .wrap { position: relative; }
 
@@ -286,6 +286,24 @@ main > section.feature:nth-child(even of .feature) .split .fig { order: -1; }
 .js .reveal .row:nth-child(4) .track i { animation-delay: .3s; }
 .js .reveal .area { animation: fade 1.2s ease-out 1s both paused; }
 .js .reveal.in .draw, .js .reveal.in .track i, .js .reveal.in .area { animation-play-state: running; }
+
+/* ---------- leagues ---------- */
+/* One league linked to its member clubs: same tools for each, each club's data kept separate. */
+.lg-top { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--hair); border-radius: var(--radius-tile); background: var(--bg); }
+.lg-top .icon { font-size: 22px; flex: none; }
+.lg-top b { display: block; font-size: .92rem; letter-spacing: -.015em; }
+.lg-top span { display: block; font-size: .74rem; color: var(--text-2); }
+.lg-links { display: block; width: 100%; height: 26px; }
+.lg-links path { fill: none; stroke: var(--slate); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.lg-clubs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.lg-club { padding: 11px 10px; display: flex; flex-direction: column; gap: 8px; background: var(--surface); }
+.lg-name { display: flex; align-items: center; gap: 6px; font-size: .74rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
+.lg-name svg { width: 16px; height: 16px; flex: none; }
+.lg-club ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.lg-club li { display: flex; align-items: center; gap: 5px; font-size: .68rem; color: var(--text-2); }
+.lg-club li .icon { color: var(--slate); font-size: 13px; flex: none; }
+.lg-own { display: flex; align-items: center; gap: 5px; font-size: .66rem; color: var(--muted); border-top: 1px solid var(--hair-soft); padding-top: 7px; }
+.lg-own .icon { font-size: 12px; flex: none; }
 
 /* ---------- team sheet ---------- */
 /* Slate pitch with mown stripes; flagged players swap with their bench option on a slow loop. */
@@ -653,14 +671,43 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     </div>
   </section>
 
-  <section id="league">
+  <section class="feature" id="league">
     <div class="wrap">
-      <div class="copy" style="max-width:58ch">
+      <div class="split">
+      <div class="copy">
         <span class="eyebrow">For leagues and federations</span>
         <h2>One standard across your clubs.</h2>
         <p class="lede">When a league endorses Touchline, its member clubs can use it at a group rate. Every club gets the same tools to track workload, spot injury risk early and manage their athletes.</p>
         <p class="lede">Each club keeps its own data. The league never sees a player's medical record.</p>
         <a class="btn ghost" href="#demo" style="margin-top:8px">Talk to us about endorsing Touchline</a>
+      </div>
+        <div class="fig compact">
+          <div class="card lg-card" role="img" aria-label="One league linked to three member clubs. Each club has the same Touchline tools for workload, injury risk and wellness, and keeps its own data.">
+            <div class="p-head">
+              <span class="p-title">One league, every club</span>
+              <span class="p-note">Group rate</span>
+            </div>
+            <div class="lg-top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg><div><b>Your league</b><span>Endorses Touchline</span></div></div>
+            <svg class="lg-links" viewBox="0 0 300 26" preserveAspectRatio="none" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M150 0V12M50 12H250M50 12V26M150 12V26M250 12V26"/></svg>
+            <div class="lg-clubs">
+            <div class="tile lg-club">
+              <div class="lg-name"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.4" y="4.6" width="19.2" height="14.8" rx="2"></rect><path d="M12 4.6V19.4"></path><circle cx="12" cy="12" r="3.3"></circle></svg>Northside FC</div>
+              <ul><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Workload</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Injury risk</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Wellness</li></ul>
+              <div class="lg-own"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Own data</div>
+            </div>
+            <div class="tile lg-club">
+              <div class="lg-name"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.4" y="4.6" width="19.2" height="14.8" rx="2"></rect><path d="M12 4.6V19.4"></path><circle cx="12" cy="12" r="3.3"></circle></svg>Riverbank SC</div>
+              <ul><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Workload</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Injury risk</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Wellness</li></ul>
+              <div class="lg-own"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Own data</div>
+            </div>
+            <div class="tile lg-club">
+              <div class="lg-name"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.4" y="4.6" width="19.2" height="14.8" rx="2"></rect><path d="M12 4.6V19.4"></path><circle cx="12" cy="12" r="3.3"></circle></svg>Eastgate United</div>
+              <ul><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Workload</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Injury risk</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Wellness</li></ul>
+              <div class="lg-own"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Own data</div>
+            </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
