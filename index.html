@@ -167,7 +167,27 @@ section { padding-block: clamp(64px, 9vw, 116px); }
 .cover .aud-grid p { color: rgba(255, 255, 255, .72); }
 .cover.band { padding-block: clamp(48px, 7vw, 80px); }
 
-.hero { padding-block: clamp(56px, 8vw, 96px) clamp(48px, 7vw, 84px); }
+.hero { position: relative; overflow: hidden; isolation: isolate; padding-block: clamp(56px, 8vw, 96px) clamp(48px, 7vw, 84px); }
+.hero > .wrap { position: relative; }
+
+/* Live hero background: a Slate pitch in line style, neutral players shifting as a unit,
+   and one red trace for the squad's own GPS run. Slow and quiet; still under reduced motion. */
+.hero-bg {
+  position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.5) 40%, #000 75%);
+          mask-image: linear-gradient(90deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.5) 40%, #000 75%);
+}
+.hero-bg .pitch { fill: none; stroke: var(--slate); stroke-opacity: .42; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.hero-bg .spot { fill: var(--slate); fill-opacity: .42; }
+.hero-bg .pl { fill: var(--text); fill-opacity: .16; animation: shift-a 22s ease-in-out infinite alternate; }
+.hero-bg .pl.b { animation-name: shift-b; animation-duration: 19s; }
+.hero-bg .pl.c { animation-name: shift-c; animation-duration: 25s; }
+.hero-bg .run { fill: none; stroke: var(--own); stroke-opacity: .75; stroke-width: 1.9; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; animation: run 14s ease-in-out infinite; }
+@keyframes shift-a { 0% { transform: translate(0, 0); } 50% { transform: translate(70px, -24px); } 100% { transform: translate(30px, 26px); } }
+@keyframes shift-b { 0% { transform: translate(0, 0); } 50% { transform: translate(60px, 18px); } 100% { transform: translate(90px, -14px); } }
+@keyframes shift-c { 0% { transform: translate(0, 0); } 50% { transform: translate(40px, 30px); } 100% { transform: translate(75px, 8px); } }
+@keyframes run { 0% { stroke-dashoffset: 1; opacity: 1; } 65% { stroke-dashoffset: 0; opacity: 1; } 88% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
 .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .hero-copy { display: flex; flex-direction: column; gap: 26px; align-items: flex-start; }
 .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -295,6 +315,7 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
   .hero-grid, .split { grid-template-columns: 1fr; }
   main > section.feature:nth-child(even of .feature) .split .fig { order: 0; }
   .aud-grid { grid-template-columns: 1fr 1fr; }
+  .hero-bg { -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.3) 55%, #000 100%); mask-image: linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.3) 55%, #000 100%); }
   nav { display: none; }
 }
 @media (max-width: 520px) {
@@ -327,7 +348,35 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
 
 <main id="top">
 
-  <section class="wrap hero">
+  <section class="hero">
+    <svg class="hero-bg" viewBox="0 0 1050 680" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g class="pitch">
+        <rect x="20" y="20" width="1010" height="640" rx="6"/>
+        <path d="M525 20V660"/>
+        <circle cx="525" cy="340" r="91.5"/>
+        <rect x="20" y="138.5" width="165" height="403"/>
+        <rect x="865" y="138.5" width="165" height="403"/>
+        <rect x="20" y="248.5" width="55" height="183"/>
+        <rect x="975" y="248.5" width="55" height="183"/>
+        <path d="M185 266.9A91.5 91.5 0 0 1 185 413.1"/>
+        <path d="M865 266.9A91.5 91.5 0 0 0 865 413.1"/>
+      </g>
+      <circle class="spot" cx="525" cy="340" r="3.5"/>
+      <circle class="spot" cx="130" cy="340" r="3.5"/>
+      <circle class="spot" cx="920" cy="340" r="3.5"/>
+      <circle class="pl" cx="300" cy="340" r="7"/>
+      <circle class="pl b" cx="380" cy="190" r="7"/>
+      <circle class="pl b" cx="380" cy="490" r="7"/>
+      <circle class="pl" cx="460" cy="290" r="7"/>
+      <circle class="pl c" cx="460" cy="400" r="7"/>
+      <circle class="pl c" cx="570" cy="140" r="7"/>
+      <circle class="pl b" cx="570" cy="540" r="7"/>
+      <circle class="pl" cx="640" cy="340" r="7"/>
+      <circle class="pl c" cx="730" cy="250" r="7"/>
+      <circle class="pl b" cx="730" cy="440" r="7"/>
+      <path class="run" pathLength="1" d="M380 560C470 590 520 470 610 490S770 560 820 440S900 300 850 250"/>
+    </svg>
+    <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy">
         <h1>Your whole squad.<br>One place.</h1>
@@ -375,6 +424,7 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
           <span class="chip"><span class="status risk">High risk</span><b>2</b></span>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
