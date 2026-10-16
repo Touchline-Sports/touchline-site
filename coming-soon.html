@@ -85,13 +85,6 @@ a { color: inherit; }
 .main { flex: 1; display: flex; align-items: center; padding-block: clamp(32px, 6vw, 72px); }
 .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: clamp(32px, 6vw, 80px); align-items: center; }
 .copy { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
-.badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: .85rem; font-weight: 700; letter-spacing: -.01em;
-  padding: 6px 14px; border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, .3); color: rgba(255, 255, 255, .9);
-}
-.badge i { width: 7px; height: 7px; border-radius: 50%; background: #ffffff; opacity: .85; }
 .lede { font-size: clamp(1.05rem, 1.7vw, 1.2rem); color: rgba(255, 255, 255, .8); max-width: 44ch; }
 .pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
 .pills li { font-size: .85rem; color: rgba(255, 255, 255, .85); padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .3); }
@@ -113,7 +106,6 @@ input, select {
   background: #ffffff; border: 1px solid var(--hair);
   border-radius: 12px; padding: 11px 13px; width: 100%;
 }
-input::placeholder { color: var(--muted); }
 input[aria-invalid="true"] { border-color: var(--text); }
 
 .btn {
@@ -183,7 +175,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   <main class="main">
     <div class="wrap grid">
       <div class="copy">
-        <span class="badge"><i aria-hidden="true"></i>Coming soon</span>
         <h1>Your whole squad.<br>One place.</h1>
         <p class="lede">Touchline is a squad performance hub for football clubs. We're getting it ready to launch.</p>
         <ul class="pills" aria-label="What Touchline does">
@@ -202,8 +193,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
             <p class="sub">Leave your details and we'll show you around.</p>
           </div>
           <div class="fields">
-            <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Alex Rivera" required></div>
-            <div class="field"><label for="f-club">Club or league</label><input id="f-club" name="club" type="text" autocomplete="organization" placeholder="Your club" required></div>
+            <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="f-club">Club or league</label><input id="f-club" name="club" type="text" autocomplete="organization" required></div>
             <div class="field"><label for="f-role">Your role</label>
               <select id="f-role" name="role">
                 <option>Head coach</option><option>Assistant coach</option>
@@ -212,7 +203,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
                 <option>League official</option>
               </select>
             </div>
-            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@club.com.au" required></div>
+            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
           </div>
           <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px">
             <button class="btn primary" type="submit">Request a demo</button>
@@ -237,7 +228,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
       <span>&copy; <span id="year">2026</span> Touchline</span>
       <a class="social" href="https://www.instagram.com/touchline.sports/">
         <span class="ring"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17 7h.01"/></svg></span>
-        Follow along on Instagram
+        Follow our Instagram
       </a>
     </div>
   </footer>
@@ -258,13 +249,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   var TO = 'hello@touchline.com.au';
   var form = document.getElementById('demo-form');
   var sent = document.getElementById('demo-sent');
-  var role = document.getElementById('f-role');
-  var club = document.getElementById('f-club');
-
-  role.addEventListener('change', function () {
-    club.placeholder = role.value === 'League official' ? 'Your league' : 'Your club';
-  });
-
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var data = new FormData(form);
