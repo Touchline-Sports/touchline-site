@@ -2,71 +2,101 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Martian+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
 
 <style>
-/* Layout: one column of claims, each paired with a fragment of the real interface. */
+/* Layout: one column of claims, each paired with a fragment of the real interface.
+   Brand: Touchline brand guidelines, Version 1, October 2026. */
 :root {
-  --paper: #f4f4f2;
-  --panel: #ffffff;
-  --ink: #15171a;
-  --ink-2: #52585f;
-  --muted: #8d9299;
-  --hair: rgba(21, 23, 26, .10);
-  --hair-soft: rgba(21, 23, 26, .055);
-  --accent: #2a78d6;
-  --accent-ink: #ffffff;
-  --good: #0f9d2f;
-  --warn: #e8a317;
-  --crit: #d03b3b;
-  --tint: rgba(42, 120, 214, .08);
-  --shadow: 0 1px 2px rgba(21, 23, 26, .04), 0 8px 24px rgba(21, 23, 26, .05);
-  --display: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "Martian Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Brand palette */
+  --graphite: #2b2e33;  /* dark ground for covers and dark sections */
+  --ink: #15171a;       /* text, figures, inverted fills */
+  --card: #f3f3f1;      /* every card, dialog and menu */
+  --page: #e6e7e9;      /* the ground behind the cards */
+  --red: #c1272d;       /* the squad's own data, and nothing else */
+  --slate: #5f7895;     /* the pitch and the app frame */
+
+  /* Status colours. Never used alone: always with a shape and a word. */
+  --st-ok: #1f8a43;
+  --st-caution: #c98a0c;
+  --st-risk: #c43c32;
+  --st-none: #8d9299;
+
+  /* Theme roles (light) */
+  --bg: var(--page);
+  --surface: var(--card);
+  --text: var(--ink);
+  --text-2: #4f555c;
+  --muted: #7b8088;
+  --hair: rgba(21, 23, 26, .14);
+  --hair-soft: rgba(21, 23, 26, .08);
+  --own: var(--red);
+  --cover: var(--graphite);
+  --dark-ground: var(--graphite);
+  --dark-surface: #35393f;
+  --on-cover: #ffffff;
+  --inverse: var(--ink);
+  --on-inverse: var(--card);
+
+  --radius-card: 22px;
+  --radius-tile: 16px;
+  --mark: 24px;
+
+  --font: -apple-system, BlinkMacSystemFont, Inter, system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #12181f;
-    --panel: #1a222b;
-    --ink: #f1f3f5;
-    --ink-2: #a8b1ba;
-    --muted: #78828c;
-    --hair: rgba(241, 243, 245, .14);
-    --hair-soft: rgba(241, 243, 245, .07);
-    --accent: #6ba6ec;
-    --accent-ink: #0d1319;
-    --good: #46c766;
-    --warn: #f0b949;
-    --crit: #e8706e;
-    --tint: rgba(107, 166, 236, .12);
-    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .28);
+    --bg: var(--graphite);
+    --surface: #35393f;
+    --text: #f3f3f1;
+    --text-2: #b8bcc2;
+    --muted: #8e939a;
+    --hair: rgba(243, 243, 241, .16);
+    --hair-soft: rgba(243, 243, 241, .08);
+    --own: #dc4a50;
+    --st-ok: #4cbf6e;
+    --st-caution: #e6ae3c;
+    --st-risk: #e66a5e;
+    --st-none: #9aa0a7;
+    --cover: #24272b;
+  --dark-ground: #222529;
+  --dark-surface: #2f3238;
+    --dark-ground: #222529;
+    --dark-surface: #2f3238;
+    --inverse: #f3f3f1;
+    --on-inverse: var(--ink);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #12181f;
-  --panel: #1a222b;
-  --ink: #f1f3f5;
-  --ink-2: #a8b1ba;
-  --muted: #78828c;
-  --hair: rgba(241, 243, 245, .14);
-  --hair-soft: rgba(241, 243, 245, .07);
-  --accent: #6ba6ec;
-  --accent-ink: #0d1319;
-  --good: #46c766;
-  --warn: #f0b949;
-  --crit: #e8706e;
-  --tint: rgba(107, 166, 236, .12);
-  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .28);
+  --bg: var(--graphite);
+  --surface: #35393f;
+  --text: #f3f3f1;
+  --text-2: #b8bcc2;
+  --muted: #8e939a;
+  --hair: rgba(243, 243, 241, .16);
+  --hair-soft: rgba(243, 243, 241, .08);
+  --own: #dc4a50;
+  --st-ok: #4cbf6e;
+  --st-caution: #e6ae3c;
+  --st-risk: #e66a5e;
+  --st-none: #9aa0a7;
+  --cover: #24272b;
+  --inverse: #f3f3f1;
+  --on-inverse: var(--ink);
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
+main > section[id] { scroll-margin-top: 75px; }
+[hidden] { display: none !important; }
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--display);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 400;
   font-size: 17px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -77,313 +107,445 @@ body {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-h1, h2, h3 { margin: 0; text-wrap: balance; letter-spacing: -.028em; font-weight: 700; }
-h1 { font-size: clamp(2.5rem, 6.4vw, 4.1rem); line-height: 1.03; letter-spacing: -.04em; }
+h1, h2, h3 { margin: 0; text-wrap: balance; letter-spacing: -.03em; font-weight: 700; }
+h1 { font-size: clamp(2.5rem, 6.4vw, 4.1rem); line-height: 1.03; letter-spacing: -.045em; }
 h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); line-height: 1.12; }
 h3 { font-size: 1.1rem; line-height: 1.3; letter-spacing: -.02em; }
 p { margin: 0; }
 a { color: inherit; }
 
-.eyebrow {
-  font-family: var(--mono);
-  font-size: .62rem;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--muted);
+.eyebrow { font-size: .85rem; font-weight: 700; letter-spacing: -.01em; color: var(--muted); }
+
+/* ---------- the mark ---------- */
+/* Rounded rectangle split down the middle, circle at the centre. 1.8 stroke on a 24 grid.
+   Never filled, never red, word always lowercase. */
+.lockup {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: calc(var(--mark) / 2);
+  margin: calc(var(--mark) / -2);
+  text-decoration: none; color: var(--text);
 }
+.lockup svg { display: block; width: var(--mark); height: var(--mark); flex: none; }
+.lockup b { font-size: 1.22rem; font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+
+/* ---------- icons: line, 24 grid, 1.9 stroke, round caps ---------- */
+.icon { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.12em; }
 
 /* ---------- header ---------- */
 header {
   position: sticky;
   top: env(safe-area-inset-top, 0px);
   z-index: 20;
-  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
   backdrop-filter: saturate(1.6) blur(12px);
   border-bottom: 1px solid var(--hair-soft);
 }
-.bar { display: flex; align-items: center; gap: 20px; padding-block: 15px; }
-.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; margin-right: auto; }
-.brand svg { display: block; width: 25px; height: auto; }
-.brand b { font-size: 1.22rem; font-weight: 700; letter-spacing: -.045em; }
+.bar { display: flex; align-items: center; gap: 20px; padding-block: 14px; }
+.bar .lockup { margin-right: auto; }
+.bar .btn + .btn { margin-left: -10px; }
 nav { display: flex; gap: 26px; }
-nav a { font-size: .93rem; color: var(--ink-2); text-decoration: none; }
-nav a:hover { color: var(--ink); }
+nav a { font-size: .93rem; color: var(--text-2); text-decoration: none; }
+nav a:hover { color: var(--text); }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   gap: 8px; border: 0; border-radius: 999px; cursor: pointer;
-  font-family: var(--display); font-size: .95rem; font-weight: 500;
+  font-family: var(--font); font-size: .95rem; font-weight: 700; letter-spacing: -.01em;
   padding: 11px 22px; text-decoration: none; white-space: nowrap;
   transition: transform .14s ease, background .14s ease, opacity .14s ease;
 }
-.btn.primary { background: var(--ink); color: var(--paper); }
+.btn.primary { background: var(--inverse); color: var(--on-inverse); }
 .btn.primary:hover { transform: translateY(-1px); opacity: .9; }
-.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--hair); }
-.btn.ghost:hover { border-color: var(--ink); }
+.btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--hair); }
+.btn.ghost:hover { border-color: var(--text); }
 .btn.lg { padding: 14px 28px; font-size: 1rem; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
-  outline: 2px solid var(--accent); outline-offset: 2px;
+  outline: 2px solid var(--text); outline-offset: 2px;
 }
 
 /* ---------- sections ---------- */
 section { padding-block: clamp(64px, 9vw, 116px); }
-.rule { border-top: 1px solid var(--hair-soft); }
-.lede { font-size: clamp(1.05rem, 1.7vw, 1.2rem); color: var(--ink-2); max-width: 52ch; }
+.lede { font-size: clamp(1.05rem, 1.7vw, 1.2rem); color: var(--text-2); max-width: 52ch; }
 
-.hero { padding-block: clamp(56px, 8vw, 96px) clamp(48px, 7vw, 84px); }
-.hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.cover { background: var(--cover); color: var(--on-cover); }
+.cover .eyebrow { color: rgba(255, 255, 255, .62); }
+.cover .lede { color: rgba(255, 255, 255, .78); }
+.cover .tile { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .16); }
+.cover .aud-grid p { color: rgba(255, 255, 255, .72); }
+.band { padding-block: clamp(48px, 7vw, 80px); }
+.band.light { background: var(--surface); }
+.band.light .tile { background: var(--bg); }
+
+/* Section grounds alternate dark and light down the page automatically: every odd section after the hero is dark.
+   Dark sections re-point the theme tokens, so cards, text and status colours follow. */
+main > section:nth-of-type(odd):not(.hero) {
+  background: var(--dark-ground);
+  color: var(--text);
+  --bg: var(--dark-ground);
+  --surface: var(--dark-surface);
+  --text: #f3f3f1;
+  --text-2: #b8bcc2;
+  --muted: #8e939a;
+  --hair: rgba(243, 243, 241, .16);
+  --hair-soft: rgba(243, 243, 241, .08);
+  --own: #dc4a50;
+  --st-ok: #4cbf6e;
+  --st-caution: #e6ae3c;
+  --st-risk: #e66a5e;
+  --st-none: #9aa0a7;
+  --inverse: #f3f3f1;
+  --on-inverse: var(--ink);
+}
+/* The phone mock-up and the team sheet always show a light surface, so they stand out on dark grounds in both themes. */
+.phone, .ts-card, .lg-card {
+  --bg: #ffffff;
+  --surface: var(--card);
+  --text: var(--ink);
+  --text-2: #4f555c;
+  --muted: #7b8088;
+  --hair: rgba(21, 23, 26, .14);
+  --hair-soft: rgba(21, 23, 26, .08);
+  --own: var(--red);
+  --inverse: var(--ink);
+  --on-inverse: var(--card);
+  --st-ok: #1f8a43;
+  --st-caution: #c98a0c;
+  --st-risk: #c43c32;
+  --st-none: #8d9299;
+  color: var(--text);
+}
+.ts-card, .lg-card { --surface: #ffffff; --bg: var(--card); }
+.hero { position: relative; overflow: hidden; isolation: isolate; padding-block: clamp(56px, 8vw, 96px) clamp(48px, 7vw, 84px); }
+.hero > .wrap { position: relative; }
+
+/* Hero background: muted, looping night pitch footage under a Graphite overlay. Poster only under reduced motion. */
+.hero { background: var(--graphite) url("assets/hero-poster.jpg") center / cover no-repeat; color: var(--on-cover); }
+.hero-video { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.hero-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(43, 46, 51, .88) 0%, rgba(43, 46, 51, .62) 55%, rgba(43, 46, 51, .35) 100%); }
+.hero .lede { color: rgba(255, 255, 255, .8); }
+.hero .pills li { color: rgba(255, 255, 255, .85); border-color: rgba(255, 255, 255, .3); }
+.hero .btn.primary { background: #ffffff; color: var(--ink); }
+.hero .btn.ghost { color: #ffffff; border-color: rgba(255, 255, 255, .4); }
+.hero .btn.ghost:hover { border-color: #ffffff; }
+.hero :focus-visible { outline-color: #ffffff; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 640px); min-height: clamp(380px, 46vw, 520px); align-items: center; }
 .hero-copy { display: flex; flex-direction: column; gap: 26px; align-items: flex-start; }
 .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
+.pills li { font-size: .85rem; color: var(--text-2); padding: 6px 14px; border-radius: 999px; border: 1px solid var(--hair); }
+
+.audience { display: flex; flex-direction: column; gap: 18px; }
+.aud-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.aud-grid .tile { display: flex; flex-direction: column; gap: 6px; }
+.aud-grid p { font-size: .92rem; color: var(--text-2); }
 
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
-.split.flip .fig { order: -1; }
+/* Feature sections alternate sides automatically: every second one puts the figure on the left. */
+main > section.feature:nth-child(even of .feature) .split .fig { order: -1; }
 .copy { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; min-width: 0; }
 
-/* ---------- panels and interface fragments ---------- */
+/* ---------- cards, tiles and interface fragments ---------- */
+/* Cards: 22px corners, no border, no shadow. Tiles: 16px corners, hairline border. */
 .fig { min-width: 0; }
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--hair-soft);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 20px;
-}
-.panel + .panel { margin-top: 12px; }
-.p-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+.card { background: var(--surface); border-radius: var(--radius-card); padding: 22px; }
+.card + .card { margin-top: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--hair); border-radius: var(--radius-tile); padding: 18px; }
+.p-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 16px; }
 .p-title { font-size: .95rem; font-weight: 700; letter-spacing: -.015em; }
-.p-note { font-size: .72rem; color: var(--muted); }
+.p-note { font-size: .74rem; color: var(--muted); }
+.fig-note { font-size: .78rem; color: var(--muted); margin-top: 12px; }
+.fig.compact { width: 100%; max-width: 380px; justify-self: center; }
+.fig.compact .card { padding: 18px; }
+.fig.compact .p-head { margin-bottom: 12px; }
+.fig.compact .rows { gap: 11px; }
+.fig.compact .row .val { font-size: 1rem; }
+.fig.compact .chip { padding: 5px 11px; }
 
-.rows { display: flex; flex-direction: column; gap: 13px; }
-.row { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; }
-.row .who { font-size: .85rem; }
-.row .val { font-family: var(--mono); font-size: .72rem; font-variant-numeric: tabular-nums; }
-.track { grid-column: 1 / -1; height: 7px; border-radius: 999px; background: var(--hair-soft); position: relative; overflow: hidden; }
+/* ---------- squad load ---------- */
+/* The squad's own average is the one red line; the target range is a quiet Slate band. */
+.ld-sum { margin-bottom: 10px; }
+.ld-sum > div { display: flex; flex-direction: column; gap: 2px; }
+.ld-chart { display: block; width: 100%; height: auto; margin-bottom: 16px; overflow: visible; }
+.ld-chart .band { fill: var(--slate); fill-opacity: .14; }
+.ld-chart .edge { fill: none; stroke: var(--slate); stroke-opacity: .55; stroke-width: 1; stroke-dasharray: 2 4; stroke-linecap: round; }
+.ld-chart .lbl { fill: var(--slate); font-size: 9px; font-weight: 700; }
+.ld-chart .ax { fill: var(--muted); font-size: 9px; }
+.ld-chart .ax.end { text-anchor: end; }
+.ld-chart .area { fill: var(--own); fill-opacity: .08; }
+.ld-chart .line { fill: none; stroke: var(--own); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; }
+.ld-chart .pt { fill: var(--own); stroke: var(--surface); stroke-width: 2; }
+.ld-chart .pulse { fill: var(--own); fill-opacity: .25; transform-box: fill-box; transform-origin: center; animation: pulse 2.6s ease-out infinite; }
+.ld-rows { gap: 12px; }
+@keyframes pulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(3.2); opacity: 0; } }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+/* Plays once when the panel scrolls into view. Without JS or with reduced motion, it shows the final state. */
+.js .reveal .draw { animation: draw 1.8s ease-out .2s both paused; }
+.js .reveal .track i { transform-origin: left; animation: grow 1.1s cubic-bezier(.2, .7, .2, 1) both paused; }
+.js .reveal .row:nth-child(2) .track i { animation-delay: .1s; }
+.js .reveal .row:nth-child(3) .track i { animation-delay: .2s; }
+.js .reveal .row:nth-child(4) .track i { animation-delay: .3s; }
+.js .reveal .area { animation: fade 1.2s ease-out 1s both paused; }
+.js .reveal.in .draw, .js .reveal.in .track i, .js .reveal.in .area { animation-play-state: running; }
+
+/* ---------- leagues ---------- */
+/* One league linked to its member clubs: same tools for each, each club's data kept separate. */
+.lg-top { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--hair); border-radius: var(--radius-tile); background: var(--bg); }
+.lg-top .icon { font-size: 22px; flex: none; }
+.lg-top b { display: block; font-size: .92rem; letter-spacing: -.015em; }
+.lg-top span { display: block; font-size: .74rem; color: var(--text-2); }
+.lg-links { display: block; width: 100%; height: 26px; }
+.lg-links path { fill: none; stroke: var(--slate); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.lg-clubs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.lg-club { padding: 11px 10px; display: flex; flex-direction: column; gap: 8px; background: var(--surface); }
+.lg-name { display: flex; align-items: center; gap: 6px; font-size: .74rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
+.lg-name svg { width: 16px; height: 16px; flex: none; }
+.lg-club ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.lg-club li { display: flex; align-items: center; gap: 5px; font-size: .68rem; color: var(--text-2); }
+.lg-club li .icon { color: var(--slate); font-size: 13px; flex: none; }
+.lg-own { display: flex; align-items: center; gap: 5px; font-size: .66rem; color: var(--muted); border-top: 1px solid var(--hair-soft); padding-top: 7px; }
+.lg-own .icon { font-size: 12px; flex: none; }
+
+/* ---------- team sheet ---------- */
+/* Slate pitch with mown stripes; flagged players swap with their bench option on a slow loop. */
+.ts-sum { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.ts-sum > div:first-child { display: flex; flex-direction: column; gap: 2px; }
+.ts-n { font-size: 2.4rem; font-weight: 300; letter-spacing: -.04em; line-height: 1; }
+.ts-n small { font-size: .38em; font-weight: 400; letter-spacing: 0; color: var(--text-2); margin-left: .3em; }
+.ts-k { font-size: .8rem; color: var(--text-2); }
+.ts-pitch { display: block; width: 100%; height: auto; margin-bottom: 14px; }
+.ts-pitch .turf { fill: var(--slate); }
+.ts-pitch .stripe { fill: #ffffff; fill-opacity: .05; }
+.ts-pitch .ln { fill: none; stroke: #ffffff; stroke-opacity: .55; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.ts-pitch .disc { fill: var(--card); }
+.ts-pitch .ring { fill: none; stroke-width: 2.4; }
+.ts-pitch .ring.risk { stroke: var(--st-risk); }
+.ts-pitch .ring.caution { stroke: var(--st-caution); }
+.ts-pitch .ring.ok { stroke: var(--st-ok); }
+.ts-pitch text { fill: var(--ink); font-size: 11px; font-weight: 700; letter-spacing: -.02em; text-anchor: middle; dominant-baseline: central; font-variant-numeric: tabular-nums; }
+.ts-pitch .bdg { stroke: var(--card); stroke-width: 1.6; }
+.ts-pitch .bdg.risk { fill: var(--st-risk); }
+.ts-pitch .bdg.caution { fill: var(--st-caution); }
+.ts-pitch .bdg.ok { fill: var(--st-ok); }
+.ts-pitch .sw-out { animation: sw-out 9s ease-in-out infinite; }
+.ts-pitch .sw-in { opacity: 0; animation: sw-in 9s ease-in-out infinite; }
+.ts-pitch .d2 { animation-delay: 1.2s; }
+@keyframes sw-out { 0%, 38% { opacity: 1; transform: translate(0, 0); } 48%, 88% { opacity: 0; transform: translate(0, 12px); } 98%, 100% { opacity: 1; transform: translate(0, 0); } }
+@keyframes sw-in { 0%, 38% { opacity: 0; transform: translate(0, -12px); } 48%, 88% { opacity: 1; transform: translate(0, 0); } 98%, 100% { opacity: 0; transform: translate(0, -12px); } }
+.swaps { display: flex; flex-direction: column; gap: 8px; }
+.swap { border: 1px solid var(--hair); border-radius: var(--radius-tile); padding: 10px 12px; display: grid; gap: 6px; }
+.swap .sub { display: flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--text-2); }
+.swap .sub .icon { font-size: 15px; color: var(--muted); }
+
+.rows { display: flex; flex-direction: column; gap: 14px; }
+.row { display: grid; grid-template-columns: 1fr auto auto; gap: 6px 14px; align-items: center; }
+.row .who { font-size: .88rem; }
+.row .val { font-size: 1.15rem; font-weight: 300; letter-spacing: -.02em; min-width: 3ch; text-align: right; }
+.track { grid-column: 1 / -1; height: 7px; border-radius: 999px; background: var(--hair-soft); position: relative; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .track i { position: absolute; inset-block: 0; left: 0; border-radius: 999px; display: block; }
-.zone { position: absolute; inset-block: 0; background: var(--tint); }
+.zone { position: absolute; inset-block: 0; background: var(--hair); }
+
+/* Status: colour + shape + word, so it survives print and colour blindness. */
+.status { display: inline-flex; align-items: center; gap: 7px; font-size: .78rem; color: var(--text-2); white-space: nowrap; }
+.status::before {
+  content: ""; width: 8px; height: 8px; flex: none; box-sizing: border-box;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.status.ok::before { background: var(--st-ok); border-radius: 50%; }
+.status.caution::before { background: var(--st-caution); transform: rotate(45deg) scale(.9); }
+.status.risk::before { background: var(--st-risk); }
+.status.none::before { border: 1.6px solid var(--st-none); border-radius: 50%; }
 
 .chip {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--mono); font-size: .62rem; font-weight: 600;
-  letter-spacing: .06em; text-transform: uppercase;
-  padding: 4px 9px; border-radius: 999px; border: 1px solid var(--hair);
-  color: var(--ink-2);
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 13px; border-radius: 999px; border: 1px solid var(--hair);
 }
-.chip .dot { width: 6px; height: 6px; border-radius: 50%; }
+.chip b { font-size: .85rem; font-weight: 300; color: var(--text); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
 
 .scale-row { display: grid; gap: 6px; margin-bottom: 12px; }
 .scale-row:last-child { margin-bottom: 0; }
-.scale-row span { font-size: .78rem; color: var(--ink-2); }
+.scale-row span { font-size: .8rem; color: var(--text-2); }
 .scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
 .scale b {
-  font-family: var(--mono); font-size: .72rem; font-weight: 400;
-  text-align: center; padding: 8px 0; border-radius: 8px;
-  border: 1px solid var(--hair-soft); background: var(--paper); color: var(--ink-2);
+  font-size: .82rem; font-weight: 400;
+  text-align: center; padding: 7px 0; border-radius: 999px;
+  border: 1px solid var(--hair); color: var(--text-2);
 }
-.scale b.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.scale b.on { background: var(--inverse); color: var(--on-inverse); border-color: var(--inverse); }
 
-.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--hair-soft); border: 1px solid var(--hair-soft); border-radius: 16px; overflow: hidden; }
-.stat { background: var(--paper); padding: 22px 20px; display: flex; flex-direction: column; gap: 5px; }
-.stat .n { font-family: var(--mono); font-size: 1.5rem; font-weight: 600; letter-spacing: -.04em; }
-.stat .k { font-size: .82rem; color: var(--ink-2); }
-
-/* ---------- access table ---------- */
-.table-wrap { overflow-x: auto; border: 1px solid var(--hair-soft); border-radius: 16px; background: var(--panel); }
-table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: .9rem; }
-th, td { text-align: left; padding: 15px 20px; border-bottom: 1px solid var(--hair-soft); vertical-align: top; }
-tr:last-child td { border-bottom: 0; }
-th { font-family: var(--mono); font-size: .62rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-td:first-child { font-weight: 500; white-space: nowrap; }
-td.sees { color: var(--ink-2); }
+/* Figures: figure first, light and large, unit smaller and after, then a short label. */
 
 /* ---------- phone ---------- */
-.phone { width: 236px; margin-inline: auto; background: var(--ink); border-radius: 30px; padding: 8px; box-shadow: var(--shadow); }
-.screen { background: var(--paper); border-radius: 23px; padding: 16px 13px; display: flex; flex-direction: column; gap: 10px; }
+.phone { width: 236px; margin-inline: auto; background: var(--slate); border-radius: 30px; padding: 8px; }
+.screen { background: var(--bg); border-radius: 23px; padding: 16px 13px; display: flex; flex-direction: column; gap: 10px; }
 .ph-hi { font-size: .95rem; font-weight: 700; letter-spacing: -.025em; }
 .ph-hi small { display: block; font-size: .64rem; font-weight: 400; color: var(--muted); letter-spacing: 0; }
-.ph-card { background: var(--panel); border: 1px solid var(--hair-soft); border-radius: 13px; padding: 12px; }
-.ph-card.ink { background: var(--ink); border-color: var(--ink); }
-.ph-card.ink .k, .ph-card.ink .v { color: var(--paper); }
+.ph-card { background: var(--surface); border: 1px solid var(--hair); border-radius: 13px; padding: 12px; }
+.ph-card.ink { background: var(--inverse); border-color: var(--inverse); }
+.ph-card.ink .k, .ph-card.ink .v { color: var(--on-inverse); }
 .ph-card .k { font-size: .6rem; color: var(--muted); }
 .ph-card .v { font-size: .95rem; font-weight: 700; letter-spacing: -.02em; }
 .ph-metrics { display: flex; gap: 18px; margin-top: 8px; }
-.ph-metrics .m { font-family: var(--mono); font-size: .88rem; font-weight: 600; letter-spacing: -.04em; }
-.ph-metrics .d { font-size: .58rem; color: var(--good); }
+.ph-metrics .m { font-size: 1.15rem; font-weight: 300; letter-spacing: -.03em; }
+.ph-metrics .m small { font-size: .55em; font-weight: 400; color: var(--muted); margin-left: .2em; letter-spacing: 0; }
+.ph-metrics .d { font-size: .58rem; color: var(--text-2); }
+.spark { display: block; width: 100%; height: 34px; margin-top: 10px; }
+.spark .own { stroke: var(--own); }
+.spark .avg { stroke: var(--muted); stroke-dasharray: 2 3; }
+.legend { display: flex; gap: 10px; font-size: .55rem; color: var(--muted); margin-top: 4px; }
+.legend i { display: inline-block; width: 10px; height: 0; border-top: 1.9px solid var(--own); vertical-align: middle; margin-right: 4px; }
+.legend i.avg { border-top: 1.9px dashed var(--muted); }
 
 /* ---------- form ---------- */
-.form-card { background: var(--panel); border: 1px solid var(--hair-soft); border-radius: 20px; box-shadow: var(--shadow); padding: clamp(24px, 4vw, 38px); }
+.form-card { background: var(--surface); border-radius: var(--radius-card); padding: clamp(24px, 4vw, 38px); }
 .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .field.wide { grid-column: 1 / -1; }
-label { font-size: .8rem; font-weight: 500; color: var(--ink-2); }
+label { font-size: .8rem; font-weight: 400; color: var(--text-2); }
 input, select {
-  font-family: var(--display); font-size: .97rem; color: var(--ink);
-  background: var(--paper); border: 1px solid var(--hair);
-  border-radius: 10px; padding: 11px 13px; width: 100%;
+  font-family: var(--font); font-size: .97rem; color: var(--text);
+  background: var(--bg); border: 1px solid var(--hair);
+  border-radius: 12px; padding: 11px 13px; width: 100%;
 }
 input::placeholder { color: var(--muted); }
 .form-foot { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 22px; }
 .form-foot .small { font-size: .8rem; color: var(--muted); max-width: 38ch; }
 .sent { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
-.sent .echo { font-family: var(--mono); font-size: .76rem; line-height: 1.9; color: var(--ink-2); }
+.sent .echo { font-size: .85rem; line-height: 1.9; color: var(--text-2); }
 .mailto { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.mailto code { font-family: var(--mono); font-size: .82rem; background: var(--paper); border: 1px solid var(--hair-soft); border-radius: 8px; padding: 7px 11px; user-select: all; }
+.mailto code { font-family: var(--font); font-size: .88rem; background: var(--bg); border: 1px solid var(--hair); border-radius: 999px; padding: 8px 15px; user-select: all; }
 
 footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
-.foot { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: .85rem; color: var(--muted); }
+.foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; font-size: .85rem; color: var(--muted); }
+.foot-links { display: flex; align-items: center; gap: 18px; }
+.foot-links a { color: var(--muted); }
+.foot-links a:hover { color: var(--text); }
+.social { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--hair); }
+.social .icon { font-size: 18px; }
 
 @media (max-width: 860px) {
-  .hero-grid, .split { grid-template-columns: 1fr; }
-  .split.flip .fig { order: 0; }
+  .hero-grid { min-height: 0; }
+  .split { grid-template-columns: 1fr; }
+  main > section.feature:nth-child(even of .feature) .split .fig { order: 0; }
+  .aud-grid { grid-template-columns: 1fr 1fr; }
+  .hero-shade { background: linear-gradient(180deg, rgba(43, 46, 51, .82) 0%, rgba(43, 46, 51, .7) 100%); }
   nav { display: none; }
 }
 @media (max-width: 520px) {
+  .bar { gap: 12px; }
+  .bar .btn { padding: 9px 14px; font-size: .88rem; }
+  .bar .btn + .btn { margin-left: -4px; }
   body { font-size: 16px; }
-  .fields { grid-template-columns: 1fr; }
+  .fields, .aud-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 380px) {
+  .bar { gap: 10px; }
+  .bar .btn { padding: 8px 11px; font-size: .82rem; }
+  .lockup b { font-size: 1.1rem; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; }
   * { transition: none !important; animation: none !important; }
 }
 </style>
 
 <header>
   <div class="wrap bar">
-    <a class="brand" href="#top">
-      <svg viewBox="0 0 506 414" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="42">
-        <rect x="21" y="21" width="464" height="372" rx="34"></rect>
-        <path d="M253 21V393"></path>
-        <circle cx="253" cy="207" r="83.5"></circle>
+    <a class="lockup" href="#top" aria-label="touchline">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="2.4" y="4.6" width="19.2" height="14.8" rx="2"></rect>
+        <path d="M12 4.6V19.4"></path>
+        <circle cx="12" cy="12" r="3.3"></circle>
       </svg>
       <b>touchline</b>
     </a>
     <nav>
       <a href="#what">What it does</a>
-      <a href="#access">Who sees what</a>
       <a href="#league">For leagues</a>
     </nav>
+    <!-- Web app address: change this one link when the portal is live. -->
+    <a class="btn ghost" href="https://app.touchline.example">Log in</a>
     <a class="btn primary" href="#demo">Request a demo</a>
   </div>
 </header>
 
 <main id="top">
 
-  <section class="wrap hero">
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
+      <source src="assets/hero.webm" type="video/webm">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-shade"></div>
+    <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">For semi-professional football clubs</span>
         <h1>Your whole squad.<br>One place.</h1>
-        <p class="lede">GPS load, wellness, availability, fixtures and team sheets, in one system built for the people who actually run a club on a Tuesday night.</p>
+        <p class="lede">A squad performance hub for football clubs.</p>
+        <ul class="pills" aria-label="What Touchline does">
+          <li>GPS load</li>
+          <li>Injury-risk alerts</li>
+          <li>Wellness</li>
+          <li>Fixtures</li>
+          <li>Team sheets</li>
+        </ul>
         <div class="cta-row">
           <a class="btn primary lg" href="#demo">Request a demo</a>
-          <a class="btn ghost lg" href="#what">See how it works</a>
         </div>
       </div>
-      <div class="fig">
-        <div class="panel">
-          <div class="p-head">
-            <span class="p-title">Squad load</span>
-            <span class="p-note">Acute : chronic, last 28 days</span>
-          </div>
-          <div class="rows">
-            <div class="row">
-              <span class="who">M. Oliveira</span><span class="val" style="color:var(--crit)">1.62</span>
-              <span class="track"><span class="zone" style="left:40%;width:25%"></span><i style="width:81%;background:var(--crit)"></i></span>
-            </div>
-            <div class="row">
-              <span class="who">K. Nguyen</span><span class="val" style="color:var(--warn)">1.38</span>
-              <span class="track"><span class="zone" style="left:40%;width:25%"></span><i style="width:69%;background:var(--warn)"></i></span>
-            </div>
-            <div class="row">
-              <span class="who">J. Castellan</span><span class="val" style="color:var(--good)">1.04</span>
-              <span class="track"><span class="zone" style="left:40%;width:25%"></span><i style="width:52%;background:var(--good)"></i></span>
-            </div>
-            <div class="row">
-              <span class="who">T. Abrahams</span><span class="val" style="color:var(--good)">0.91</span>
-              <span class="track"><span class="zone" style="left:40%;width:25%"></span><i style="width:46%;background:var(--good)"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="panel" style="display:flex;gap:10px;flex-wrap:wrap">
-          <span class="chip"><span class="dot" style="background:var(--good)"></span>19 available</span>
-          <span class="chip"><span class="dot" style="background:var(--warn)"></span>3 modified</span>
-          <span class="chip"><span class="dot" style="background:var(--crit)"></span>2 out</span>
+    </div>
+    </div>
+  </section>
+
+  <section class="band light">
+    <div class="wrap">
+      <div class="audience">
+        <h2 style="font-size:clamp(1.3rem,2.4vw,1.6rem)">Built for everyone on the touchline</h2>
+        <div class="aud-grid">
+          <div class="tile"><h3>Coaches</h3><p>See load and readiness before you pick the side.</p></div>
+          <div class="tile"><h3>Physios</h3><p>Spot risk early and track every return to play.</p></div>
+          <div class="tile"><h3>Club admins</h3><p>Fixtures, squads and staff kept in one place.</p></div>
+          <div class="tile"><h3>Players</h3><p>Check in, see your numbers, know the plan.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="wrap rule">
-    <div class="copy" style="max-width:62ch">
-      <span class="eyebrow">The gap</span>
-      <h2>The data arrives on Tuesday. The decision was needed on Monday.</h2>
-      <p class="lede">Semi-professional clubs now own the same GPS units the professionals do. What they don't have is the sports scientist who turns the export into a decision, so it gets made on how the players look at warm-up instead.</p>
-    </div>
-  </section>
-
-  <section class="wrap rule" id="what">
-    <div class="split">
-      <div class="copy">
-        <span class="eyebrow">Load and risk</span>
-        <h2>Who's one hard session from a hamstring.</h2>
-        <p class="lede">Import the GPS export your club already produces. Touchline works out every player's acute:chronic workload ratio, tracks it against their own four-week baseline, and flags the ones drifting out of range before it becomes an injury.</p>
-        <p class="lede">Catapult, STATSports or a CSV you built yourself. We map the columns once and it stays mapped.</p>
-      </div>
-      <div class="fig">
-        <div class="stat-grid">
-          <div class="stat"><span class="n">7,358</span><span class="k">Metres, last session</span></div>
-          <div class="stat"><span class="n">31.4</span><span class="k">Top speed, km/h</span></div>
-          <div class="stat"><span class="n">0.8&ndash;1.3</span><span class="k">The range we watch</span></div>
-          <div class="stat"><span class="n">28d</span><span class="k">Rolling baseline</span></div>
+  <section class="feature" id="what">
+    <div class="wrap">
+      <div class="split">
+        <div class="copy">
+          <span class="eyebrow">The player app</span>
+          <h2>Every player sees their own numbers.</h2>
+          <p class="lede">Their next fixture, their training week, their personal bests, and how each session compares with their own average. Never another player's numbers.</p>
+          <p class="lede">It's what keeps them checking in.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap rule">
-    <div class="split flip">
-      <div class="copy">
-        <span class="eyebrow">Wellness</span>
-        <h2>Thirty seconds, before they get out of bed.</h2>
-        <p class="lede">Sleep, soreness, energy, mood. Two days before and two days after every match. Three weeks in, the system knows each player's normal, so a genuine dip shows up instead of hiding in the average.</p>
-        <p class="lede">Answers go straight to the coaching and medical staff. Compliance is the whole game here, which is why it fits on one screen.</p>
-      </div>
-      <div class="fig">
-        <div class="panel">
-          <div class="p-head"><span class="p-title">How are you feeling?</span><span class="p-note">Mon, 2 days out</span></div>
-          <div class="scale-row"><span>Sleep quality</span><div class="scale"><b>1</b><b>2</b><b>3</b><b class="on">4</b><b>5</b></div></div>
-          <div class="scale-row"><span>Muscle soreness</span><div class="scale"><b>1</b><b>2</b><b class="on">3</b><b>4</b><b>5</b></div></div>
-          <div class="scale-row"><span>Energy</span><div class="scale"><b>1</b><b>2</b><b>3</b><b class="on">4</b><b>5</b></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap rule">
-    <div class="split">
-      <div class="copy">
-        <span class="eyebrow">The player app</span>
-        <h2>Give a nineteen-year-old their own numbers.</h2>
-        <p class="lede">Every player gets their next match, their training week, and how their last session compared with their own average. Personal bests, plain-English explanations, and their position rank — never another player's numbers.</p>
-        <p class="lede">It isn't a feature. It's why they keep filling in the check-in.</p>
-      </div>
-      <div class="fig">
-        <div class="phone">
-          <div class="screen">
-            <div class="ph-hi">Morning, Alex<small>Seniors &middot; Monday</small></div>
-            <div class="ph-card ink">
-              <div class="k">Seniors &middot; #10</div>
-              <div class="v">4 days to Round 15</div>
-            </div>
-            <div class="ph-card">
-              <div class="k">Last session</div>
-              <div class="ph-metrics">
-                <div><div class="m">7,358</div><div class="d">&#9650; 12% vs avg</div></div>
-                <div><div class="m">31.4</div><div class="d">&#9650; 4% vs avg</div></div>
+        <div class="fig">
+          <div class="phone">
+            <div class="screen">
+              <div class="ph-hi">Good morning<small>Seniors &middot; Mon 21/09/2026</small></div>
+              <div class="ph-card ink">
+                <div class="k">Next fixture &middot; #10</div>
+                <div class="v">Round 15, Fri 25/09</div>
               </div>
-            </div>
-            <div class="ph-card">
-              <div class="k">Wellness</div>
-              <div class="v" style="font-size:.8rem">Due today</div>
+              <div class="ph-card">
+                <div class="k">Last session</div>
+                <div class="ph-metrics">
+                  <div><div class="m">7,358<small>m</small></div><div class="d"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg> 12% vs your avg</div></div>
+                  <div><div class="m">31.4<small>km/h</small></div><div class="d"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg> 4% vs your avg</div></div>
+                </div>
+                <svg class="spark" viewBox="0 0 200 34" preserveAspectRatio="none" aria-label="Your distance over your last six sessions, against your average" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path class="avg" d="M2 19H198" vector-effect="non-scaling-stroke"/>
+                  <path class="own" d="M2 24L41 17L80 22L119 14L158 20L198 8" vector-effect="non-scaling-stroke"/>
+                </svg>
+                <div class="legend"><span><i></i>You</span><span><i class="avg"></i>Your average</span></div>
+              </div>
+              <div class="ph-card">
+                <div class="k">Wellness</div>
+                <div class="v" style="font-size:.8rem">Due today</div>
+              </div>
             </div>
           </div>
         </div>
@@ -391,78 +553,225 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     </div>
   </section>
 
-  <section class="wrap rule" id="access">
-    <div class="copy" style="max-width:58ch;margin-bottom:34px">
-      <span class="eyebrow">Privacy</span>
-      <h2>The physio's notes stay with the physio.</h2>
-      <p class="lede">Every club asks this, usually second. Here is the answer before you have to.</p>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Role</th><th>Can see</th></tr></thead>
-        <tbody>
-          <tr><td>Player</td><td class="sees">Their own data only. Their rank and the squad average, never a teammate's numbers.</td></tr>
-          <tr><td>Coach</td><td class="sees">The whole squad's load, wellness flags and availability. Not medical notes, not diagnoses.</td></tr>
-          <tr><td>Physio</td><td class="sees">The squad, plus injury records, rehab plans and return-to-play stages.</td></tr>
-          <tr><td>Club admin</td><td class="sees">Users, consent records and billing. Not medical notes.</td></tr>
-          <tr><td>The league</td><td class="sees">Aggregated totals only. Nothing about any individual player.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="lede" style="margin-top:22px">Enforced in the database, not hidden in the interface. Players under 18 have nothing collected until a parent or guardian consents, and that consent can be withdrawn at any time. Data is stored in Australia.</p>
-  </section>
-
-  <section class="wrap rule" id="league">
-    <div class="copy" style="max-width:58ch">
-      <span class="eyebrow">For leagues and federations</span>
-      <h2>One picture of the whole competition.</h2>
-      <p class="lede">When clubs run Touchline, their league gets fixtures and ladders across every grade, player statistics by age group, a Team of the Week picked from the match sheet rather than a committee, and a fantasy competition that puts families in the league's news every week.</p>
-      <p class="lede">The club keeps its own data. The league sees counts, never a player's medical record.</p>
-      <a class="btn ghost" href="#demo" style="margin-top:8px">Talk to us about a competition licence</a>
-    </div>
-  </section>
-
-  <section class="wrap rule" id="demo">
-    <div class="split">
-      <div class="copy">
-        <span class="eyebrow">Request a demo</span>
-        <h2>Twenty minutes, your own data.</h2>
-        <p class="lede">Send us a recent GPS export and we'll show you your own squad in Touchline rather than a sample one. No obligation, and we'll tell you if it isn't a fit.</p>
-        <p class="lede">We're taking a small number of pilot clubs for the 2027 preseason. Pilot clubs get the platform free for the season and a founding rate locked for three years afterwards.</p>
+  <section class="feature" id="gps-load">
+    <div class="wrap">
+      <div class="split">
+        <div class="copy">
+          <span class="eyebrow">GPS load and injury-risk alerts</span>
+          <h2>Know who's at risk before they get injured.</h2>
+          <p class="lede">Upload your GPS data and Touchline tracks each player's load against their own normal. If someone is doing too much, you'll know before it becomes an injury.</p>
+        </div>
+        <div class="fig compact">
+          <div class="card load-card reveal">
+            <div class="p-head">
+              <span class="p-title">Squad load</span>
+              <span class="p-note">ACWR, this week</span>
+            </div>
+            <div class="ld-sum">
+              <div><span class="ts-n">1.18<small>ACWR</small></span><span class="ts-k">Squad average, inside the target range</span></div>
+            </div>
+            <svg class="ld-chart" viewBox="0 12 320 104" role="img" aria-label="Squad average ACWR over the last six weeks, rising from 0.95 to 1.18 and staying inside the 0.8 to 1.3 target range.">
+              <rect class="band" x="6" y="21.1" width="308" height="65.8" rx="6"/>
+              <path class="edge" d="M6 21.1H314M6 86.9H314"/>
+              <text class="lbl" x="12" y="79.9">Target 0.8 to 1.3</text>
+              <path class="area" d="M16 67.1 L70 57.9 L124 47.4 L178 52.7 L232 42.2 L286 36.9 L286 86.9 L16 86.9 Z"/>
+              <path class="line draw" pathLength="1" d="M16 67.1 L70 57.9 L124 47.4 L178 52.7 L232 42.2 L286 36.9"/>
+              <circle class="pulse" cx="286" cy="36.9" r="5"/>
+              <circle class="pt" cx="286" cy="36.9" r="4.2"/>
+              <text class="ax" x="16" y="114">6 weeks ago</text>
+              <text class="ax end" x="286" y="114">This week</text>
+            </svg>
+            <div class="rows ld-rows">
+              <div class="row">
+                <span class="who">#9 &middot; ST</span><span class="status risk">High risk</span><span class="val">1.62</span>
+                <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:85.0%;background:var(--st-risk)"></i></span>
+              </div>
+              <div class="row">
+                <span class="who">#7 &middot; RW</span><span class="status caution">Caution</span><span class="val">1.38</span>
+                <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:65.0%;background:var(--st-caution)"></i></span>
+              </div>
+              <div class="row">
+                <span class="who">#4 &middot; CB</span><span class="status ok">Available</span><span class="val">1.04</span>
+                <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:36.7%;background:var(--st-ok)"></i></span>
+              </div>
+              <div class="row">
+                <span class="who">#8 &middot; CM</span><span class="status none">No alerts</span><span class="val">0.91</span>
+                <span class="track"><span class="zone" style="left:16.7%;width:41.6%"></span><i style="width:25.8%;background:var(--st-none)"></i></span>
+              </div>
+            </div>
+          </div>
+          <p class="fig-note">ACWR on a 28-day rolling baseline.</p>
+        </div>
       </div>
-      <div class="fig">
-        <div class="form-card">
-          <form id="demo-form" novalidate>
-            <div class="fields">
-              <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Alex Rivera" required></div>
-              <div class="field"><label for="f-club">Club</label><input id="f-club" name="club" type="text" placeholder="Brunswick City SC" required></div>
-              <div class="field"><label for="f-role">Your role</label>
-                <select id="f-role" name="role">
-                  <option>Head coach</option><option>Assistant coach</option>
-                  <option>Strength &amp; conditioning</option><option>Physiotherapist</option>
-                  <option>Technical director</option><option>Committee or administration</option>
-                </select>
-              </div>
-              <div class="field"><label for="f-gps">GPS units</label>
-                <select id="f-gps" name="gps">
-                  <option>Catapult</option><option>STATSports</option>
-                  <option>Another provider</option><option>None yet</option>
-                </select>
-              </div>
-              <div class="field wide"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@club.com.au" required></div>
+    </div>
+  </section>
+
+  <section class="feature" id="team-sheets">
+    <div class="wrap">
+      <div class="split">
+        <div class="copy">
+          <span class="eyebrow">Team sheets</span>
+          <h2>Pick your team with the data in front of you.</h2>
+          <p class="lede">See every player's load and readiness as you pick your team. Players at risk are flagged, with a fit replacement suggested from the bench.</p>
+          <p class="lede">You still make the call. Now you make it with the numbers.</p>
+        </div>
+        <div class="fig compact">
+          <div class="card ts-card">
+            <div class="p-head">
+              <span class="p-title">Team sheet</span>
+              <span class="p-note">Round 15, Fri 25/09/2026</span>
             </div>
-            <div class="form-foot">
-              <button class="btn primary lg" type="submit">Request a demo</button>
-              <span class="small">We'll reply within two business days. Your details go nowhere else.</span>
+            <div class="ts-sum">
+              <div><span class="ts-n">9<small>of 11</small></span><span class="ts-k">Ready to start</span></div>
+              <div class="chips">
+                <span class="chip"><span class="status caution">Caution</span><b>1</b></span>
+                <span class="chip"><span class="status risk">High risk</span><b>1</b></span>
+              </div>
             </div>
-          </form>
-          <div class="sent" id="demo-sent" hidden>
-            <h3>That's everything we need.</h3>
-            <p class="small" style="color:var(--ink-2);max-width:40ch">This preview doesn't send mail yet. Copy the address below and send us the same details, and we'll come back within two business days.</p>
-            <div class="echo" id="demo-echo"></div>
-            <div class="mailto">
-              <code id="demo-email">hello@touchline.com.au</code>
-              <button class="btn ghost" type="button" id="copy-btn">Copy address</button>
+            <svg class="ts-pitch" viewBox="0 0 340 220" role="img" aria-label="Starting XI in a 4-3-3 on a pitch. Number 9 is flagged High risk and swaps with number 19. Number 7 is flagged Caution and swaps with number 17.">
+              <defs>
+                <radialGradient id="ts-glow" cx="50%" cy="40%" r="70%">
+                  <stop offset="0" stop-color="#ffffff" stop-opacity=".16"/>
+                  <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+                </radialGradient>
+                <clipPath id="ts-clip"><rect x="6" y="6" width="328" height="208" rx="12"/></clipPath>
+              </defs>
+              <rect class="turf" x="6" y="6" width="328" height="208" rx="12"/>
+              <g clip-path="url(#ts-clip)"><rect class="stripe" x="6" y="6" width="20.5" height="208"/><rect class="stripe" x="47" y="6" width="20.5" height="208"/><rect class="stripe" x="88" y="6" width="20.5" height="208"/><rect class="stripe" x="129" y="6" width="20.5" height="208"/><rect class="stripe" x="170" y="6" width="20.5" height="208"/><rect class="stripe" x="211" y="6" width="20.5" height="208"/><rect class="stripe" x="252" y="6" width="20.5" height="208"/><rect class="stripe" x="293" y="6" width="20.5" height="208"/><rect x="6" y="6" width="328" height="208" fill="url(#ts-glow)"/></g>
+              <g class="ln">
+                <rect x="14" y="14" width="312" height="192" rx="3"/>
+                <path d="M170 14V206"/>
+                <circle cx="170" cy="110" r="27"/>
+                <rect x="14" y="62" width="44" height="96"/>
+                <rect x="282" y="62" width="44" height="96"/>
+                <path d="M58 92A20 20 0 0 1 58 128M282 92A20 20 0 0 0 282 128"/>
+              </g>
+            
+  <g class="pm"><circle class="disc" cx="30" cy="110" r="13"/><text x="30" y="110">1</text></g>            <g class="pm"><circle class="disc" cx="92" cy="40" r="13"/><text x="92" y="40">3</text></g>            <g class="pm"><circle class="disc" cx="92" cy="85" r="13"/><text x="92" y="85">4</text></g>            <g class="pm"><circle class="disc" cx="92" cy="135" r="13"/><text x="92" y="135">5</text></g>            <g class="pm"><circle class="disc" cx="92" cy="180" r="13"/><text x="92" y="180">2</text></g>            <g class="pm"><circle class="disc" cx="172" cy="60" r="13"/><text x="172" y="60">10</text></g>            <g class="pm"><circle class="disc" cx="172" cy="110" r="13"/><text x="172" y="110">8</text></g>            <g class="pm"><circle class="disc" cx="172" cy="160" r="13"/><text x="172" y="160">6</text></g>            <g class="pm"><circle class="disc" cx="252" cy="50" r="13"/><text x="252" y="50">11</text></g>            <g class="pm sw-out"><circle class="disc" cx="268" cy="110" r="13"/><circle class="ring risk" cx="268" cy="110" r="16.5"/><text x="268" y="110">9</text><rect class="bdg risk" x="275.5" y="92.5" width="9" height="9"/></g>            <g class="pm sw-in"><circle class="disc" cx="268" cy="110" r="13"/><circle class="ring ok" cx="268" cy="110" r="16.5"/><text x="268" y="110">19</text><circle class="bdg ok" cx="280" cy="97" r="4.8"/></g>            <g class="pm sw-out d2"><circle class="disc" cx="252" cy="170" r="13"/><circle class="ring caution" cx="252" cy="170" r="16.5"/><text x="252" y="170">7</text><rect class="bdg caution" x="260" y="153" width="8" height="8" transform="rotate(45 264 157)"/></g>            <g class="pm sw-in d2"><circle class="disc" cx="252" cy="170" r="13"/><circle class="ring ok" cx="252" cy="170" r="16.5"/><text x="252" y="170">17</text><circle class="bdg ok" cx="264" cy="157" r="4.8"/></g>
+            </svg>
+            <div class="swaps">
+              <div class="swap">
+                <div class="row"><span class="who">#9 &middot; ST</span><span class="status risk">High risk</span><span class="val">1.62</span></div>
+                <div class="sub"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h13M15 5l3 3-3 3M19 16H6M9 13l-3 3 3 3"/></svg>Replace with #19 &middot; ST <span class="status ok">Available</span></div>
+              </div>
+              <div class="swap">
+                <div class="row"><span class="who">#7 &middot; RW</span><span class="status caution">Caution</span><span class="val">1.38</span></div>
+                <div class="sub"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h13M15 5l3 3-3 3M19 16H6M9 13l-3 3 3 3"/></svg>Replace with #17 &middot; RW <span class="status ok">Available</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="fig-note">Figures are ACWR.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature">
+    <div class="wrap">
+      <div class="split">
+        <div class="copy">
+          <span class="eyebrow">Wellness</span>
+          <h2>Know how your players are feeling.</h2>
+          <p class="lede">Players rate their sleep, soreness, energy and mood. Touchline learns each player's normal, so a real dip stands out.</p>
+          <p class="lede">Answers go straight to your coaching and medical staff.</p>
+        </div>
+        <div class="fig">
+          <div class="card">
+            <div class="p-head"><span class="p-title">How are you feeling?</span><span class="p-note">Wed 23/09/2026</span></div>
+            <div class="scale-row"><span>Sleep quality</span><div class="scale"><b>1</b><b>2</b><b>3</b><b class="on">4</b><b>5</b></div></div>
+            <div class="scale-row"><span>Muscle soreness</span><div class="scale"><b>1</b><b>2</b><b class="on">3</b><b>4</b><b>5</b></div></div>
+            <div class="scale-row"><span>Energy</span><div class="scale"><b>1</b><b>2</b><b>3</b><b class="on">4</b><b>5</b></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature" id="league">
+    <div class="wrap">
+      <div class="split">
+      <div class="copy">
+        <span class="eyebrow">For leagues and federations</span>
+        <h2>One standard across clubs.</h2>
+        <p class="lede">When a league endorses Touchline, its member clubs can use it at a group rate. Every club gets the same tools to track workload, spot injury risk early and manage their athletes.</p>
+        <p class="lede">Each club keeps its own data. The league never sees a player's medical record.</p>
+        <a class="btn ghost" href="#demo" data-role="League official" style="margin-top:8px">Talk to us about endorsing Touchline</a>
+      </div>
+        <div class="fig compact">
+          <div class="card lg-card" role="img" aria-label="One league linked to three member clubs. Each club has the same Touchline tools for workload, injury risk and wellness, and keeps its own data.">
+            <div class="p-head">
+              <span class="p-title">One league, every club</span>
+              <span class="p-note">Group rate</span>
+            </div>
+            <div class="lg-top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg><div><b>Your league</b><span>Endorses Touchline</span></div></div>
+            <svg class="lg-links" viewBox="0 0 300 26" preserveAspectRatio="none" aria-hidden="true"><path vector-effect="non-scaling-stroke" d="M150 0V12M50 12H250M50 12V26M150 12V26M250 12V26"/></svg>
+            <div class="lg-clubs">
+            <div class="tile lg-club">
+              <div class="lg-name"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.4" y="4.6" width="19.2" height="14.8" rx="2"></rect><path d="M12 4.6V19.4"></path><circle cx="12" cy="12" r="3.3"></circle></svg>Northside FC</div>
+              <ul><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Workload</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Injury risk</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Wellness</li></ul>
+              <div class="lg-own"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Own data</div>
+            </div>
+            <div class="tile lg-club">
+              <div class="lg-name"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.4" y="4.6" width="19.2" height="14.8" rx="2"></rect><path d="M12 4.6V19.4"></path><circle cx="12" cy="12" r="3.3"></circle></svg>Riverbank SC</div>
+              <ul><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Workload</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Injury risk</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Wellness</li></ul>
+              <div class="lg-own"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Own data</div>
+            </div>
+            <div class="tile lg-club">
+              <div class="lg-name"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.4" y="4.6" width="19.2" height="14.8" rx="2"></rect><path d="M12 4.6V19.4"></path><circle cx="12" cy="12" r="3.3"></circle></svg>Eastgate United</div>
+              <ul><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Workload</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Injury risk</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Wellness</li></ul>
+              <div class="lg-own"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Own data</div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo">
+    <div class="wrap">
+      <div class="split">
+        <div class="copy">
+          <span class="eyebrow" id="demo-eyebrow">Request a demo</span>
+          <h2 id="demo-title">See Touchline in action.</h2>
+          <p class="lede" id="demo-lede">We'll walk you through Touchline, from GPS load to the team sheet. No obligation, and we'll tell you if it isn't a fit.</p>
+        </div>
+        <div class="fig">
+          <div class="form-card">
+            <form id="demo-form" novalidate>
+              <div class="fields">
+                <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Alex Rivera" required></div>
+                <div class="field"><label for="f-club" id="l-club">Club</label><input id="f-club" name="club" type="text" placeholder="Your club" required></div>
+                <div class="field"><label for="f-role">Your role</label>
+                  <select id="f-role" name="role">
+                    <option>Head coach</option><option>Assistant coach</option>
+                    <option>Strength and conditioning</option><option>Physio</option>
+                    <option>Technical director</option><option>Club admin or committee</option>
+                    <option>League official</option>
+                  </select>
+                </div>
+                <div class="field" id="fld-gps"><label for="f-gps">GPS units</label>
+                  <select id="f-gps" name="gps">
+                    <option>Catapult</option><option>STATSports</option>
+                    <option>Another provider</option><option>None yet</option>
+                  </select>
+                </div>
+                <div class="field" id="fld-clubs" hidden><label for="f-clubs">Member clubs (optional)</label><input id="f-clubs" name="clubs" type="number" min="1" inputmode="numeric" placeholder="e.g. 12"></div>
+                <div class="field wide"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@club.com.au" required></div>
+              </div>
+              <div class="form-foot">
+                <button class="btn primary lg" type="submit" id="demo-submit">Request a demo</button>
+                <span class="small">We'll reply within two business days. Your details go nowhere else.</span>
+              </div>
+            </form>
+            <div class="sent" id="demo-sent" hidden>
+              <h3>That's everything we need.</h3>
+              <p class="small" style="color:var(--text-2);max-width:40ch">This preview doesn't send mail yet. Copy the address below and send us the same details, and we'll come back to you within two business days.</p>
+              <div class="echo" id="demo-echo"></div>
+              <div class="mailto">
+                <code id="demo-email">hello@touchline.com.au</code>
+                <button class="btn ghost" type="button" id="copy-btn">Copy address</button>
+              </div>
             </div>
           </div>
         </div>
@@ -474,16 +783,77 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
 
 <footer>
   <div class="wrap foot">
-    <span>Touchline &middot; Melbourne, Australia</span>
-    <span>Built alongside a VPL club, not in a boardroom.</span>
+    <a class="lockup" href="#top" aria-label="touchline">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="2.4" y="4.6" width="19.2" height="14.8" rx="2"></rect>
+        <path d="M12 4.6V19.4"></path>
+        <circle cx="12" cy="12" r="3.3"></circle>
+      </svg>
+      <b>touchline</b>
+    </a>
+    <div class="foot-links">
+      <a href="/privacy">Privacy policy</a>
+      <!-- Instagram address: change this one link when the account is confirmed. -->
+      <a class="social" href="https://www.instagram.com/touchline.example" aria-label="Touchline on Instagram"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17 7h.01"/></svg></a>
+    </div>
   </div>
 </footer>
 
 <script>
+document.documentElement.classList.add('js');
+(function () {
+  var v = document.querySelector('.hero-video');
+  if (v && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    v.removeAttribute('autoplay');
+    v.pause();
+  }
+})();
+(function () {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.35 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+
 (function () {
   var form = document.getElementById('demo-form');
   var sent = document.getElementById('demo-sent');
   var echo = document.getElementById('demo-echo');
+
+  // A league or association gets the same form, worded for a conversation about endorsement.
+  var role = document.getElementById('f-role');
+  var LEAGUE = 'League official';
+  var copy = {
+    club: ['Request a demo', 'See Touchline in action.', document.getElementById('demo-lede').textContent, 'Club', 'Your club', 'Request a demo', 'you@club.com.au'],
+    league: ['Leagues and associations', 'Talk to us about endorsing Touchline.', "Tell us about your league and we'll talk through how endorsement and the group rate work for your member clubs.", 'League or association', 'Your league', 'Get in touch', 'you@league.com.au']
+  };
+  function isLeague() { return role.value === LEAGUE; }
+  function applyRole() {
+    var c = isLeague() ? copy.league : copy.club;
+    document.getElementById('demo-eyebrow').textContent = c[0];
+    document.getElementById('demo-title').textContent = c[1];
+    document.getElementById('demo-lede').textContent = c[2];
+    document.getElementById('l-club').textContent = c[3];
+    document.getElementById('f-club').placeholder = c[4];
+    document.getElementById('demo-submit').textContent = c[5];
+    document.getElementById('f-email').placeholder = c[6];
+    document.getElementById('fld-gps').hidden = isLeague();
+    document.getElementById('fld-clubs').hidden = !isLeague();
+  }
+  role.addEventListener('change', applyRole);
+  document.querySelectorAll('a[data-role]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      role.value = a.getAttribute('data-role');
+      applyRole();
+    });
+  });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -494,14 +864,16 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     if (missing.length) {
       var el = document.getElementById('f-' + missing[0]);
       el.focus();
-      el.style.borderColor = 'var(--crit)';
+      el.style.borderColor = 'var(--text)';
+      el.setAttribute('aria-invalid', 'true');
       return;
     }
+    var league = isLeague();
     var lines = [
       ['Name', data.get('name')],
-      ['Club', data.get('club')],
+      [league ? 'League' : 'Club', data.get('club')],
       ['Role', data.get('role')],
-      ['GPS', data.get('gps')],
+      league ? ['Member clubs', data.get('clubs') || 'Not given'] : ['GPS', data.get('gps')],
       ['Email', data.get('email')]
     ];
     echo.textContent = '';
@@ -518,6 +890,7 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
   ['f-name', 'f-club', 'f-email'].forEach(function (id) {
     document.getElementById(id).addEventListener('input', function () {
       this.style.borderColor = '';
+      this.removeAttribute('aria-invalid');
     });
   });
 
