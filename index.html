@@ -319,15 +319,6 @@ main > section.feature:nth-child(even of .feature) .split .fig { order: -1; }
 
 /* Figures: figure first, light and large, unit smaller and after, then a short label. */
 
-/* ---------- access table ---------- */
-.table-wrap { overflow-x: auto; border-radius: var(--radius-card); background: var(--surface); }
-table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: .9rem; }
-th, td { text-align: left; padding: 15px 22px; border-bottom: 1px solid var(--hair-soft); vertical-align: top; }
-tr:last-child td { border-bottom: 0; }
-th { font-size: .78rem; font-weight: 700; color: var(--muted); }
-td:first-child { font-weight: 700; white-space: nowrap; }
-td.sees { color: var(--text-2); }
-
 /* ---------- phone ---------- */
 .phone { width: 236px; margin-inline: auto; background: var(--slate); border-radius: 30px; padding: 8px; }
 .screen { background: var(--bg); border-radius: 23px; padding: 16px 13px; display: flex; flex-direction: column; gap: 10px; }
@@ -400,7 +391,6 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     </a>
     <nav>
       <a href="#what">What it does</a>
-      <a href="#access">Who sees what</a>
       <a href="#league">For leagues</a>
     </nav>
     <a class="btn primary" href="#demo">Request a demo</a>
@@ -638,27 +628,6 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     </div>
   </section>
 
-  <section class="wrap rule" id="access">
-    <div class="copy" style="max-width:58ch;margin-bottom:34px">
-      <span class="eyebrow">Privacy</span>
-      <h2>The physio's notes stay with the physio.</h2>
-      <p class="lede">Every club asks this, usually second. Here is the answer before you have to.</p>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Role</th><th>Can see</th></tr></thead>
-        <tbody>
-          <tr><td>Player</td><td class="sees">Their own data only. Their rank and the squad average, never a teammate's numbers.</td></tr>
-          <tr><td>Coach</td><td class="sees">The whole squad's load, wellness flags and availability. Not medical notes, not diagnoses.</td></tr>
-          <tr><td>Physio</td><td class="sees">The squad, plus injury records, rehab plans and return-to-play stages.</td></tr>
-          <tr><td>Club admin</td><td class="sees">Users, consent records and billing. Not medical notes.</td></tr>
-          <tr><td>The league</td><td class="sees">Aggregated totals only. Nothing about any individual player.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="lede" style="margin-top:22px">Enforced in the database, not hidden in the interface. Players under 18 have nothing collected until a parent or guardian consents, and that consent can be withdrawn at any time. Data is stored in Australia.</p>
-  </section>
-
   <section class="wrap rule" id="league">
     <div class="copy" style="max-width:58ch">
       <span class="eyebrow">For leagues and federations</span>
@@ -729,6 +698,7 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
       <b>touchline</b>
     </a>
     <span>Melbourne, Australia. Built alongside a VPL club, not in a boardroom.</span>
+    <a href="/privacy">Privacy policy</a>
   </div>
 </footer>
 
