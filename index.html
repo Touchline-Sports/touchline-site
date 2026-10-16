@@ -222,13 +222,31 @@ main > section.feature:nth-child(even of .feature) .split .fig { order: -1; }
 .fig.compact .chip { padding: 5px 11px; }
 
 /* ---------- team sheet ---------- */
+/* Slate pitch with mown stripes; flagged players swap with their bench option on a slow loop. */
+.ts-sum { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.ts-sum > div:first-child { display: flex; flex-direction: column; gap: 2px; }
+.ts-n { font-size: 2.4rem; font-weight: 300; letter-spacing: -.04em; line-height: 1; }
+.ts-n small { font-size: .38em; font-weight: 400; letter-spacing: 0; color: var(--text-2); margin-left: .3em; }
+.ts-k { font-size: .8rem; color: var(--text-2); }
 .ts-pitch { display: block; width: 100%; height: auto; margin-bottom: 14px; }
-.ts-pitch .turf { fill: var(--slate); fill-opacity: .08; }
-.ts-pitch .ln { fill: none; stroke: var(--slate); stroke-opacity: .6; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-.ts-pitch .pm circle { fill: var(--surface); stroke: var(--text); stroke-width: 1.4; }
-.ts-pitch .pm text { fill: var(--text); font-size: 9.5px; font-weight: 700; text-anchor: middle; dominant-baseline: central; font-variant-numeric: tabular-nums; }
-.ts-pitch .b-risk { fill: var(--st-risk); }
-.ts-pitch .b-caution { fill: var(--st-caution); }
+.ts-pitch .turf { fill: var(--slate); }
+.ts-pitch .stripe { fill: #ffffff; fill-opacity: .05; }
+.ts-pitch .ln { fill: none; stroke: #ffffff; stroke-opacity: .55; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.ts-pitch .disc { fill: var(--card); }
+.ts-pitch .ring { fill: none; stroke-width: 2.4; }
+.ts-pitch .ring.risk { stroke: var(--st-risk); }
+.ts-pitch .ring.caution { stroke: var(--st-caution); }
+.ts-pitch .ring.ok { stroke: var(--st-ok); }
+.ts-pitch text { fill: var(--ink); font-size: 11px; font-weight: 700; letter-spacing: -.02em; text-anchor: middle; dominant-baseline: central; font-variant-numeric: tabular-nums; }
+.ts-pitch .bdg { stroke: var(--card); stroke-width: 1.6; }
+.ts-pitch .bdg.risk { fill: var(--st-risk); }
+.ts-pitch .bdg.caution { fill: var(--st-caution); }
+.ts-pitch .bdg.ok { fill: var(--st-ok); }
+.ts-pitch .sw-out { animation: sw-out 9s ease-in-out infinite; }
+.ts-pitch .sw-in { opacity: 0; animation: sw-in 9s ease-in-out infinite; }
+.ts-pitch .d2 { animation-delay: 1.2s; }
+@keyframes sw-out { 0%, 38% { opacity: 1; transform: translate(0, 0); } 48%, 88% { opacity: 0; transform: translate(0, 12px); } 98%, 100% { opacity: 1; transform: translate(0, 0); } }
+@keyframes sw-in { 0%, 38% { opacity: 0; transform: translate(0, -12px); } 48%, 88% { opacity: 1; transform: translate(0, 0); } 98%, 100% { opacity: 0; transform: translate(0, -12px); } }
 .swaps { display: flex; flex-direction: column; gap: 8px; }
 .swap { border: 1px solid var(--hair); border-radius: var(--radius-tile); padding: 10px 12px; display: grid; gap: 6px; }
 .swap .sub { display: flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--text-2); }
@@ -516,31 +534,38 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
         <p class="lede">You still make the call. Now you make it with the numbers.</p>
       </div>
       <div class="fig compact">
-        <div class="card">
+        <div class="card ts-card">
           <div class="p-head">
-            <span class="p-title">Team sheet, Round 15</span>
-            <span class="p-note">Fri 25/09/2026, example</span>
+            <span class="p-title">Team sheet</span>
+            <span class="p-note">Round 15, Fri 25/09/2026, example</span>
           </div>
-          <svg class="ts-pitch" viewBox="0 0 340 220" role="img" aria-label="Starting XI in a 4-3-3. Number 9 is flagged High risk and number 7 is flagged Caution.">
-            <rect class="turf" x="6" y="6" width="328" height="208" rx="4"/>
+          <div class="ts-sum">
+            <div><span class="ts-n">9<small>of 11</small></span><span class="ts-k">Ready to start</span></div>
+            <div class="chips">
+              <span class="chip"><span class="status caution">Caution</span><b>1</b></span>
+              <span class="chip"><span class="status risk">High risk</span><b>1</b></span>
+            </div>
+          </div>
+          <svg class="ts-pitch" viewBox="0 0 340 220" role="img" aria-label="Starting XI in a 4-3-3 on a pitch. Number 9 is flagged High risk and swaps with number 19. Number 7 is flagged Caution and swaps with number 17.">
+            <defs>
+              <radialGradient id="ts-glow" cx="50%" cy="40%" r="70%">
+                <stop offset="0" stop-color="#ffffff" stop-opacity=".16"/>
+                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+              </radialGradient>
+              <clipPath id="ts-clip"><rect x="6" y="6" width="328" height="208" rx="12"/></clipPath>
+            </defs>
+            <rect class="turf" x="6" y="6" width="328" height="208" rx="12"/>
+            <g clip-path="url(#ts-clip)"><rect class="stripe" x="6" y="6" width="20.5" height="208"/><rect class="stripe" x="47" y="6" width="20.5" height="208"/><rect class="stripe" x="88" y="6" width="20.5" height="208"/><rect class="stripe" x="129" y="6" width="20.5" height="208"/><rect class="stripe" x="170" y="6" width="20.5" height="208"/><rect class="stripe" x="211" y="6" width="20.5" height="208"/><rect class="stripe" x="252" y="6" width="20.5" height="208"/><rect class="stripe" x="293" y="6" width="20.5" height="208"/><rect x="6" y="6" width="328" height="208" fill="url(#ts-glow)"/></g>
             <g class="ln">
-              <rect x="6" y="6" width="328" height="208" rx="4"/>
-              <path d="M170 6V214"/>
-              <circle cx="170" cy="110" r="28"/>
-              <rect x="6" y="58" width="50" height="104"/>
-              <rect x="284" y="58" width="50" height="104"/>
+              <rect x="14" y="14" width="312" height="192" rx="3"/>
+              <path d="M170 14V206"/>
+              <circle cx="170" cy="110" r="27"/>
+              <rect x="14" y="62" width="44" height="96"/>
+              <rect x="282" y="62" width="44" height="96"/>
+              <path d="M58 92A20 20 0 0 1 58 128M282 92A20 20 0 0 0 282 128"/>
             </g>
-          <g class="pm"><circle cx="30" cy="110" r="11"/><text x="30" y="110">1</text></g>
-          <g class="pm"><circle cx="92" cy="40" r="11"/><text x="92" y="40">3</text></g>
-          <g class="pm"><circle cx="92" cy="85" r="11"/><text x="92" y="85">4</text></g>
-          <g class="pm"><circle cx="92" cy="135" r="11"/><text x="92" y="135">5</text></g>
-          <g class="pm"><circle cx="92" cy="180" r="11"/><text x="92" y="180">2</text></g>
-          <g class="pm"><circle cx="172" cy="60" r="11"/><text x="172" y="60">10</text></g>
-          <g class="pm"><circle cx="172" cy="110" r="11"/><text x="172" y="110">8</text></g>
-          <g class="pm"><circle cx="172" cy="160" r="11"/><text x="172" y="160">6</text></g>
-          <g class="pm"><circle cx="252" cy="50" r="11"/><text x="252" y="50">11</text></g>
-          <g class="pm"><circle cx="262" cy="110" r="11"/><text x="262" y="110">9</text><rect class="b-risk" x="268" y="95" width="8" height="8"/></g>
-          <g class="pm"><circle cx="252" cy="170" r="11"/><text x="252" y="170">7</text><rect class="b-caution" x="258" y="155" width="8" height="8" transform="rotate(45 262 159)"/></g>
+            
+<g class="pm"><circle class="disc" cx="30" cy="110" r="13"/><text x="30" y="110">1</text></g>            <g class="pm"><circle class="disc" cx="92" cy="40" r="13"/><text x="92" y="40">3</text></g>            <g class="pm"><circle class="disc" cx="92" cy="85" r="13"/><text x="92" y="85">4</text></g>            <g class="pm"><circle class="disc" cx="92" cy="135" r="13"/><text x="92" y="135">5</text></g>            <g class="pm"><circle class="disc" cx="92" cy="180" r="13"/><text x="92" y="180">2</text></g>            <g class="pm"><circle class="disc" cx="172" cy="60" r="13"/><text x="172" y="60">10</text></g>            <g class="pm"><circle class="disc" cx="172" cy="110" r="13"/><text x="172" y="110">8</text></g>            <g class="pm"><circle class="disc" cx="172" cy="160" r="13"/><text x="172" y="160">6</text></g>            <g class="pm"><circle class="disc" cx="252" cy="50" r="13"/><text x="252" y="50">11</text></g>            <g class="pm sw-out"><circle class="disc" cx="268" cy="110" r="13"/><circle class="ring risk" cx="268" cy="110" r="16.5"/><text x="268" y="110">9</text><rect class="bdg risk" x="275.5" y="92.5" width="9" height="9"/></g>            <g class="pm sw-in"><circle class="disc" cx="268" cy="110" r="13"/><circle class="ring ok" cx="268" cy="110" r="16.5"/><text x="268" y="110">19</text><circle class="bdg ok" cx="280" cy="97" r="4.8"/></g>            <g class="pm sw-out d2"><circle class="disc" cx="252" cy="170" r="13"/><circle class="ring caution" cx="252" cy="170" r="16.5"/><text x="252" y="170">7</text><rect class="bdg caution" x="260" y="153" width="8" height="8" transform="rotate(45 264 157)"/></g>            <g class="pm sw-in d2"><circle class="disc" cx="252" cy="170" r="13"/><circle class="ring ok" cx="252" cy="170" r="16.5"/><text x="252" y="170">17</text><circle class="bdg ok" cx="264" cy="157" r="4.8"/></g>
           </svg>
           <div class="swaps">
             <div class="swap">
