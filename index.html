@@ -419,6 +419,11 @@ input::placeholder { color: var(--muted); }
 
 footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
 .foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; font-size: .85rem; color: var(--muted); }
+.foot-links { display: flex; align-items: center; gap: 18px; }
+.foot-links a { color: var(--muted); }
+.foot-links a:hover { color: var(--text); }
+.social { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--hair); }
+.social .icon { font-size: 18px; }
 
 @media (max-width: 860px) {
   .hero-grid { min-height: 0; }
@@ -784,8 +789,11 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
       </svg>
       <b>touchline</b>
     </a>
-    <span>Melbourne, Australia. Built alongside a VPL club, not in a boardroom.</span>
-    <a href="/privacy">Privacy policy</a>
+    <div class="foot-links">
+      <a href="/privacy">Privacy policy</a>
+      <!-- Instagram address: change this one link when the account is confirmed. -->
+      <a class="social" href="https://www.instagram.com/touchline.example" aria-label="Touchline on Instagram"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17 7h.01"/></svg></a>
+    </div>
   </div>
 </footer>
 
