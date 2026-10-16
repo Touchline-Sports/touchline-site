@@ -221,6 +221,19 @@ main > section.feature:nth-child(even of .feature) .split .fig { order: -1; }
 .fig.compact .row .val { font-size: 1rem; }
 .fig.compact .chip { padding: 5px 11px; }
 
+/* ---------- team sheet ---------- */
+.ts-pitch { display: block; width: 100%; height: auto; margin-bottom: 14px; }
+.ts-pitch .turf { fill: var(--slate); fill-opacity: .08; }
+.ts-pitch .ln { fill: none; stroke: var(--slate); stroke-opacity: .6; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.ts-pitch .pm circle { fill: var(--surface); stroke: var(--text); stroke-width: 1.4; }
+.ts-pitch .pm text { fill: var(--text); font-size: 9.5px; font-weight: 700; text-anchor: middle; dominant-baseline: central; font-variant-numeric: tabular-nums; }
+.ts-pitch .b-risk { fill: var(--st-risk); }
+.ts-pitch .b-caution { fill: var(--st-caution); }
+.swaps { display: flex; flex-direction: column; gap: 8px; }
+.swap { border: 1px solid var(--hair); border-radius: var(--radius-tile); padding: 10px 12px; display: grid; gap: 6px; }
+.swap .sub { display: flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--text-2); }
+.swap .sub .icon { font-size: 15px; color: var(--muted); }
+
 .rows { display: flex; flex-direction: column; gap: 14px; }
 .row { display: grid; grid-template-columns: 1fr auto auto; gap: 6px 14px; align-items: center; }
 .row .who { font-size: .88rem; }
@@ -490,6 +503,57 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
           <span class="chip"><span class="status risk">High risk</span><b>2</b></span>
         </div>
         <p class="fig-note">Example squad. Range we watch: 0.8 to 1.3 ACWR on a 28-day rolling baseline.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap rule feature" id="team-sheets">
+    <div class="split">
+      <div class="copy">
+        <span class="eyebrow">Team sheets</span>
+        <h2>Pick the side with the numbers in front of you.</h2>
+        <p class="lede">Build the team sheet for your next fixture with every player's load and readiness beside their shirt number. Anyone on Caution or High risk is flagged, with a like-for-like option from the bench.</p>
+        <p class="lede">The call is still yours. You just make it on MD-1 with the data, not on match day from the warm-up.</p>
+      </div>
+      <div class="fig compact">
+        <div class="card">
+          <div class="p-head">
+            <span class="p-title">Team sheet, Round 15</span>
+            <span class="p-note">Fri 25/09/2026, example</span>
+          </div>
+          <svg class="ts-pitch" viewBox="0 0 340 220" role="img" aria-label="Starting XI in a 4-3-3. Number 9 is flagged High risk and number 7 is flagged Caution.">
+            <rect class="turf" x="6" y="6" width="328" height="208" rx="4"/>
+            <g class="ln">
+              <rect x="6" y="6" width="328" height="208" rx="4"/>
+              <path d="M170 6V214"/>
+              <circle cx="170" cy="110" r="28"/>
+              <rect x="6" y="58" width="50" height="104"/>
+              <rect x="284" y="58" width="50" height="104"/>
+            </g>
+          <g class="pm"><circle cx="30" cy="110" r="11"/><text x="30" y="110">1</text></g>
+          <g class="pm"><circle cx="92" cy="40" r="11"/><text x="92" y="40">3</text></g>
+          <g class="pm"><circle cx="92" cy="85" r="11"/><text x="92" y="85">4</text></g>
+          <g class="pm"><circle cx="92" cy="135" r="11"/><text x="92" y="135">5</text></g>
+          <g class="pm"><circle cx="92" cy="180" r="11"/><text x="92" y="180">2</text></g>
+          <g class="pm"><circle cx="172" cy="60" r="11"/><text x="172" y="60">10</text></g>
+          <g class="pm"><circle cx="172" cy="110" r="11"/><text x="172" y="110">8</text></g>
+          <g class="pm"><circle cx="172" cy="160" r="11"/><text x="172" y="160">6</text></g>
+          <g class="pm"><circle cx="252" cy="50" r="11"/><text x="252" y="50">11</text></g>
+          <g class="pm"><circle cx="262" cy="110" r="11"/><text x="262" y="110">9</text><rect class="b-risk" x="268" y="95" width="8" height="8"/></g>
+          <g class="pm"><circle cx="252" cy="170" r="11"/><text x="252" y="170">7</text><rect class="b-caution" x="258" y="155" width="8" height="8" transform="rotate(45 262 159)"/></g>
+          </svg>
+          <div class="swaps">
+            <div class="swap">
+              <div class="row"><span class="who">#9 &middot; ST</span><span class="status risk">High risk</span><span class="val">1.62</span></div>
+              <div class="sub"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h13M15 5l3 3-3 3M19 16H6M9 13l-3 3 3 3"/></svg>Option: #19 &middot; ST <span class="status ok">Available</span></div>
+            </div>
+            <div class="swap">
+              <div class="row"><span class="who">#7 &middot; RW</span><span class="status caution">Caution</span><span class="val">1.38</span></div>
+              <div class="sub"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h13M15 5l3 3-3 3M19 16H6M9 13l-3 3 3 3"/></svg>Option: #17 &middot; RW <span class="status ok">Available</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="fig-note">Example team sheet. Figures are ACWR.</p>
       </div>
     </div>
   </section>
