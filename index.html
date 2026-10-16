@@ -165,7 +165,9 @@ section { padding-block: clamp(64px, 9vw, 116px); }
 .cover .lede { color: rgba(255, 255, 255, .78); }
 .cover .tile { background: rgba(255, 255, 255, .06); border-color: rgba(255, 255, 255, .16); }
 .cover .aud-grid p { color: rgba(255, 255, 255, .72); }
-.cover.band { padding-block: clamp(48px, 7vw, 80px); }
+.band { padding-block: clamp(48px, 7vw, 80px); }
+.band.light { background: var(--surface); }
+.band.light .tile { background: var(--bg); }
 
 .hero { position: relative; overflow: hidden; isolation: isolate; padding-block: clamp(56px, 8vw, 96px) clamp(48px, 7vw, 84px); }
 .hero > .wrap { position: relative; }
@@ -419,7 +421,7 @@ footer { border-top: 1px solid var(--hair-soft); padding-block: 40px 56px; }
     </div>
   </section>
 
-  <section class="cover band">
+  <section class="band light">
     <div class="wrap">
       <div class="audience">
         <h2 style="font-size:clamp(1.3rem,2.4vw,1.6rem)">Built for everyone on the touchline</h2>
