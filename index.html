@@ -194,8 +194,8 @@ main > section:nth-of-type(odd):not(.hero) {
   --inverse: #f3f3f1;
   --on-inverse: var(--ink);
 }
-/* The phone mock-up always shows a light screen, so it stands out on dark grounds in both themes. */
-.phone {
+/* The phone mock-up and the team sheet always show a light surface, so they stand out on dark grounds in both themes. */
+.phone, .ts-card {
   --bg: #ffffff;
   --surface: var(--card);
   --text: var(--ink);
@@ -206,8 +206,13 @@ main > section:nth-of-type(odd):not(.hero) {
   --own: var(--red);
   --inverse: var(--ink);
   --on-inverse: var(--card);
+  --st-ok: #1f8a43;
+  --st-caution: #c98a0c;
+  --st-risk: #c43c32;
+  --st-none: #8d9299;
   color: var(--text);
 }
+.ts-card { --surface: #ffffff; --bg: var(--card); }
 .hero { position: relative; overflow: hidden; isolation: isolate; padding-block: clamp(56px, 8vw, 96px) clamp(48px, 7vw, 84px); }
 .hero > .wrap { position: relative; }
 
