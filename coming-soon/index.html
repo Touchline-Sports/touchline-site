@@ -205,20 +205,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
               </select>
             </div>
             <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
           </div>
           <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px">
-            <button class="btn primary" type="submit">Request a demo</button>
-            <span class="small">Your details go nowhere else.</span>
+            <button class="btn primary" type="submit" id="demo-submit">Request a demo</button>
+            <span class="small" id="demo-note">We only use your details to arrange your demo.</span>
           </div>
         </form>
 
         <div class="sent" id="demo-sent" hidden>
-          <h2>Thanks, nearly done.</h2>
-          <p>Your email app should open with your details filled in. Press send and we'll be in touch. If it didn't open, email us at this address.</p>
-          <div class="mailto">
-            <code id="demo-email">hello@touchline.com.au</code>
-            <button class="btn ghost" type="button" id="copy-btn">Copy address</button>
-          </div>
+          <h2>Thanks, request sent.</h2>
+          <p>We've got your details and we'll be in touch soon to set up your demo.</p>
         </div>
       </div>
     </div>
@@ -246,10 +243,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 })();
 
 (function () {
-  // No server behind this page: the request opens the visitor's email app, addressed to us and filled in.
-  var TO = 'hello@touchline.com.au';
+  // Requests are sent by Web3Forms (web3forms.com) to the inbox that owns this access key.
+  // The key is public by design: it can only deliver form messages to that one inbox.
+  var ACCESS_KEY = 'd0bd953f-b235-4fd9-8d04-71a1ac6f187e';
+  var FALLBACK = 'general@touchlinesports.au';
   var form = document.getElementById('demo-form');
   var sent = document.getElementById('demo-sent');
+  var btn = document.getElementById('demo-submit');
+  var note = document.getElementById('demo-note');
+  var noteText = note.textContent;
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var data = new FormData(form);
@@ -262,38 +265,48 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
       el.setAttribute('aria-invalid', 'true');
       return;
     }
-    var body = [
-      'Name: ' + data.get('name'),
-      'Club or league: ' + data.get('club'),
-      'Role: ' + data.get('role'),
-      'Email: ' + data.get('email')
-    ].join('\n');
-    var subject = 'Demo request: ' + data.get('club');
-    window.location.href = 'mailto:' + TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    form.hidden = true;
-    sent.hidden = false;
+    var email = String(data.get('email')).trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      var em = document.getElementById('f-email');
+      em.focus();
+      em.setAttribute('aria-invalid', 'true');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    note.textContent = noteText;
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: ACCESS_KEY,
+        subject: 'Demo request: ' + String(data.get('club')).trim(),
+        from_name: 'Touchline website',
+        name: String(data.get('name')).trim(),
+        club: String(data.get('club')).trim(),
+        role: data.get('role'),
+        email: email,
+        replyto: email,
+        botcheck: data.get('botcheck') ? true : ''
+      })
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return r.ok && j.success; }); })
+      .then(function (ok) {
+        if (!ok) throw new Error('not sent');
+        form.hidden = true;
+        sent.hidden = false;
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Request a demo';
+        note.textContent = 'That didn\'t send. Please try again, or email us at ' + FALLBACK + '.';
+      });
   });
 
   ['f-name', 'f-club', 'f-email'].forEach(function (id) {
     document.getElementById(id).addEventListener('input', function () { this.removeAttribute('aria-invalid'); });
-  });
-
-  document.getElementById('copy-btn').addEventListener('click', function () {
-    var btn = this;
-    var done = function () {
-      btn.textContent = 'Copied';
-      setTimeout(function () { btn.textContent = 'Copy address'; }, 1800);
-    };
-    try {
-      navigator.clipboard.writeText(TO).then(done, function () {
-        var r = document.createRange();
-        r.selectNode(document.getElementById('demo-email'));
-        window.getSelection().removeAllRanges();
-        window.getSelection().addRange(r);
-      });
-    } catch (err) {
-      btn.textContent = 'Select it above';
-    }
   });
 })();
 </script>
